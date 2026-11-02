@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The First Websites</title>
+<meta name="description" content="An interactive map of how the World Wide Web spread, from info.cern.ch in 1990 to {{firsts.n|int}} countries with a recorded website by 2000: Wikipedia's list of {{list.n|int}} websites founded before 1995, {{wd.n|int}} websites in Wikidata, and the dates of every country's internet domain.">
+<meta property="og:title" content="The first websites: how the web spread around the world">
+<meta property="og:description" content="From one computer at CERN in 1990 to {{firsts.n|int}} countries by 2000. {{list.us_pct_known|int}}% of the early websites in Wikipedia's list whose country is known were American.">
+<meta property="og:image" content="https://maps.tristanhotham.com/first-websites/header.png">
+<meta property="og:url" content="https://maps.tristanhotham.com/first-websites/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800;9..144,900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<style>
+/* Early web: grey browser chrome, hyperlink blue, visited purple, on pale paper. */
+:root{
+  --bg:#F6F4EF; --panel:#EAE7DF; --fg:#1D2128; --muted:#636A72; --rule:#DDD8CC; --card:#FFFEFA; --border:#CBC5B8;
+  --link:#1A3FD0; --visited:#6B2FA0; --hot:#C8322B; --gold:#E0A11B; --chrome:#C9C6BE; --chrome2:#E4E1D9;
+  --land:#E4E0D6; --sea:#EAEEF0; --coast:#BDB6A8; --unlit:#E4E0D6;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151B; --panel:#1C2029; --fg:#ECEEF1; --muted:#A2A8B0; --rule:#30353F; --card:#171B22; --border:#444B57;
+  --link:#8FA9FF; --visited:#C49BEB; --hot:#FF6A5C; --gold:#F2B54E; --chrome:#3A3F49; --chrome2:#2A2F38;
+  --land:#262B33; --sea:#141B24; --coast:#4A515C; --unlit:#262B33; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151B; --panel:#1C2029; --fg:#ECEEF1; --muted:#A2A8B0; --rule:#30353F; --card:#171B22; --border:#444B57;
+  --link:#8FA9FF; --visited:#C49BEB; --hot:#FF6A5C; --gold:#F2B54E; --chrome:#3A3F49; --chrome2:#2A2F38;
+  --land:#262B33; --sea:#141B24; --coast:#4A515C; --unlit:#262B33; color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 18px/1.62 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+.wrap{max-width:700px;margin:0 auto;padding-block:28px 64px}
+.wrap .bleed{width:min(1180px,calc(100vw - 32px));margin-left:calc((100% - min(1180px,100vw - 32px))/2);margin-right:0}
+a{color:var(--link);text-decoration-color:currentColor;text-underline-offset:3px}
+a:visited{color:var(--visited)}
+.kicker{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.kicker b{background:var(--link);color:#fff;padding:5px 8px;font-weight:500}
+.kicker .new{background:var(--hot);color:#fff;padding:3px 6px;font-weight:500;letter-spacing:.06em}
+:root[data-theme="dark"] .kicker b{color:#12151B}
+.browser{margin-top:18px;border:1px solid var(--border);background:var(--card);box-shadow:3px 3px 0 var(--chrome)}
+.browser .bar{display:flex;gap:8px;align-items:center;background:linear-gradient(var(--chrome2),var(--chrome));border-bottom:1px solid var(--border);padding:6px 9px;font:400 12.5px/1 var(--mono);color:var(--fg)}
+.browser .bar i{width:10px;height:10px;border:1px solid var(--muted);display:inline-block;background:var(--card)}
+.browser .addr{flex:1;min-width:0;background:var(--card);border:1px inset var(--border);padding:5px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.browser .addr span{color:var(--muted)}
+header.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 24px;align-items:end;padding:18px 18px 20px}
+h1{font:900 clamp(44px,11vw,92px)/.9 var(--display);letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1 .a{color:var(--link);text-decoration:underline;text-decoration-thickness:.07em;text-underline-offset:.08em} h1 .b{color:var(--visited)}
+.mark{width:clamp(74px,15vw,120px);height:auto;display:block;color:var(--fg)}
+.dek{grid-column:1/-1;font-size:21px;line-height:1.42;margin:8px 0 0;max-width:56ch}
+.byline{font:400 13px/1.4 var(--mono);color:var(--muted);margin-top:14px}
+hr.groove{border:0;border-top:2px groove var(--chrome);border-bottom:2px groove var(--chrome);height:4px;margin:30px 0}
+h2{font:800 34px/1.04 var(--display);letter-spacing:-.01em;margin:54px 0 10px;text-wrap:balance}
+h2 .n{font:500 13px/1 var(--mono);color:var(--link);display:block;letter-spacing:.1em;margin-bottom:10px}
+h3{font:600 20px/1.25 var(--display);margin:28px 0 6px}
+p{margin:0 0 16px}
+.lede::first-letter{font:900 72px/.8 var(--display);float:left;margin:6px 10px 0 0;color:var(--link)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:26px 0 8px}
+.stats div{background:var(--card);padding:14px 12px}
+.stats b{display:inline-block;font:500 clamp(20px,4.2vw,30px)/1 var(--mono);letter-spacing:.02em;background:#111;color:#7CFC8A;padding:5px 7px 4px;border:2px inset #777}
+:root[data-theme="dark"] .stats b{background:#000}
+.stats span{font:400 12px/1.35 var(--mono);color:var(--muted);display:block;margin-top:8px}
+@media (max-width:600px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.figure{margin:26px 0 30px}
+.fig-h{font:600 19px/1.25 var(--display);margin:0 0 4px}
+.fig-sub{font:400 13px/1.45 var(--mono);color:var(--muted);margin:0 0 12px}
+.src{font:400 12px/1.45 var(--mono);color:var(--muted);margin-top:10px}
+.chart{width:100%;position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+svg text{font-family:var(--mono);fill:var(--fg)}
+.lab{font-size:12px}.lab.m{fill:var(--muted)}.lab.b{font-weight:500}.lab.s{font-size:11px}
+.tip{position:absolute;pointer-events:none;background:var(--fg);color:var(--bg);font:400 12px/1.45 var(--mono);padding:8px 10px;border-radius:3px;max-width:300px;z-index:1000;transform:translate(-50%,calc(-100% - 12px));display:none}
+.tip b{font-weight:500}
+.controls{display:flex;gap:8px;align-items:center;margin:0 0 10px;flex-wrap:wrap}
+.scrollrow{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;padding-bottom:2px;max-width:100%}
+.scrollrow .btn{flex:0 0 auto;white-space:nowrap}
+.ctl-l{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:2px;flex:0 0 auto;align-self:center}
+.btn{font:500 12px/1 var(--mono);background:linear-gradient(var(--card),var(--chrome2));color:var(--fg);border:1px outset var(--border);border-radius:2px;padding:8px 10px;cursor:pointer;min-height:36px}
+.btn[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg);border-style:inset}
+.btn i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px;border:1px solid rgba(0,0,0,.2)}
+.btn:focus-visible,input:focus-visible,summary:focus-visible,select:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+.searchbox{position:relative;flex:1 1 260px;min-width:0}
+input[type=search]{font:400 15px/1 var(--mono);background:var(--card);color:var(--fg);border:2px inset var(--border);border-radius:0;padding:10px 11px;min-height:40px;width:100%}
+.suggest{position:absolute;left:0;right:0;top:100%;margin:2px 0 0;padding:0;list-style:none;background:var(--card);border:1px solid var(--border);z-index:1001;font:400 13px/1.3 var(--mono);display:none;max-height:340px;overflow:auto}
+.suggest li{padding:8px 10px;cursor:pointer;border-bottom:1px solid var(--rule)}
+.suggest li span{color:var(--muted)}
+.suggest li[aria-selected="true"],.suggest li:hover{background:var(--panel)}
+.timebox{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;gap:10px;align-items:center;margin:0 0 10px;font:500 13px/1 var(--mono)}
+.timebox .yv{font:500 26px/1 var(--mono);min-width:4.6ch;text-align:center;color:#7CFC8A;background:#111;padding:6px 6px 5px;border:2px inset #777}
+.timebox input[type=range]{width:100%;accent-color:var(--link);height:28px}
+@media (max-width:600px){.timebox{grid-template-columns:auto auto minmax(0,1fr)}.timebox #ylab{display:none}}
+.play{width:42px;height:38px;border-radius:2px;border:1px solid var(--fg);background:var(--fg);color:var(--bg);font:600 15px/1 var(--mono);cursor:pointer}
+.mapgrid{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;align-items:start}
+@media (max-width:900px){.mapgrid{grid-template-columns:1fr}}
+.side{background:var(--card);border:1px solid var(--border);padding:12px 12px 10px;font:400 13px/1.45 var(--mono);max-height:640px;overflow:auto}
+@media (max-width:900px){.side{max-height:none}}
+.side h4{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px}
+.side h4:first-child{margin-top:2px}
+.side .big{font:800 26px/1.1 var(--display);margin:2px 0 4px}
+.side .sub{color:var(--muted);font-size:12px;margin:0 0 8px}
+.side ol,.side ul{margin:4px 0 8px;padding-left:20px}
+.side li{margin:3px 0}
+.side li small{color:var(--muted)}
+.back{font:400 12px var(--mono);background:none;border:0;color:var(--muted);padding:0;cursor:pointer;text-decoration:underline;margin-bottom:6px}
+.go{cursor:pointer;color:var(--link);text-decoration:underline;text-underline-offset:3px}
+.lmap{height:600px;border:1px solid var(--border);background:var(--sea);border-radius:2px;position:relative}
+@media (max-width:600px){.lmap{height:min(62vh,460px)}}
+.mapfail{position:absolute;left:8px;bottom:8px;max-width:min(360px,80%);padding:6px 9px;font:400 11.5px/1.4 var(--mono);color:var(--muted);background:color-mix(in srgb,var(--card) 90%,transparent);border:1px solid var(--border);border-radius:3px;z-index:5}
+.svgmap{position:absolute;inset:0;width:100%;height:100%}
+.svgmap path{stroke:var(--coast);stroke-width:.4;vector-effect:non-scaling-stroke}
+.svgmap circle{cursor:pointer}
+.maplibregl-map{font:400 12px/1.4 var(--mono)}
+.maplibregl-ctrl-group{background:var(--card)!important}
+:root[data-theme="dark"] .maplibregl-ctrl-group button .maplibregl-ctrl-icon{filter:invert(1)}
+.maplibregl-ctrl-attrib{background:color-mix(in srgb,var(--card) 85%,transparent)!important;color:var(--muted);font:400 11px/1.3 var(--mono)!important}
+.maplibregl-ctrl-attrib a{color:var(--fg)!important}
+.maplibregl-popup-content{background:var(--card);color:var(--fg);font:400 12.5px/1.45 var(--mono);padding:11px 13px;border:1px solid var(--border);border-radius:3px;box-shadow:0 3px 12px rgba(0,0,0,.2)}
+.maplibregl-popup-content b.t,.pop b.t{display:block;font:700 16px/1.2 var(--display);margin-bottom:2px}
+.maplibregl-popup-content .al,.pop .al{color:var(--muted);font-size:11.5px;margin-bottom:6px}
+.maplibregl-popup-content table,.pop table{border-collapse:collapse;margin:4px 0}
+.maplibregl-popup-content td,.pop td{padding:2px 8px 2px 0;vertical-align:top}
+.maplibregl-popup-content td:first-child,.pop td:first-child{color:var(--muted)}
+.maplibregl-popup-tip{border-top-color:var(--card)!important;border-bottom-color:var(--card)!important}
+.maplibregl-popup-close-button{font-size:18px;color:var(--muted);padding:0 6px}
+.pop{position:absolute;z-index:6;background:var(--card);color:var(--fg);font:400 12.5px/1.45 var(--mono);padding:11px 13px;border:1px solid var(--border);border-radius:3px;box-shadow:0 3px 12px rgba(0,0,0,.2);max-width:290px}
+.pop .x{position:absolute;right:6px;top:2px;background:none;border:0;color:var(--muted);font-size:18px;cursor:pointer}
+.lyr{position:absolute;left:10px;top:10px;z-index:7}
+.lyrBtn{background:var(--card);color:var(--fg);border:1px outset var(--border);border-radius:2px;font:600 12px/1 var(--mono);padding:8px 10px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.lyrBtn[aria-expanded="true"]{background:var(--fg);color:var(--bg)}
+.lyrPanel{background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:10px 12px 8px;margin-top:6px;width:250px;box-shadow:0 2px 10px rgba(0,0,0,.15);font:400 12px/1.3 var(--mono);max-height:min(70vh,500px);overflow:auto}
+.lyrPanel[hidden]{display:none}
+.lyrPanel .row{margin:0 0 9px}
+.lyrPanel label{display:flex;gap:6px;align-items:center;cursor:pointer;font-weight:600}
+.lyrPanel select{font:400 12px var(--mono);background:var(--bg);color:var(--fg);border:1px solid var(--border);border-radius:2px;padding:3px 4px;width:100%}
+.lyrPanel .hd{font:500 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:10px 0 7px;border-top:1px solid var(--rule);padding-top:9px}
+.lyrPanel .sub{color:var(--muted);font-size:11px;margin:3px 0 0}
+.lyrPanel .reset{font:400 11px var(--mono);color:var(--muted);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline}
+.cntL{font:700 10.5px/1 var(--mono);color:var(--fg);white-space:nowrap;text-transform:uppercase;letter-spacing:.06em;opacity:.8;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg),0 0 3px var(--bg);pointer-events:none;text-align:center}
+.cityL{font:500 11px/1 var(--mono);color:var(--fg);white-space:nowrap;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg),0 0 2px var(--bg);pointer-events:none}
+.cityL i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--fg);margin-right:4px;vertical-align:1px}
+.legend{display:flex;gap:6px 14px;flex-wrap:wrap;font:400 12px/1.3 var(--mono);color:var(--muted);margin-top:8px;align-items:center}
+.legend span{display:inline-flex;align-items:center}
+.legend i{display:inline-block;width:13px;height:13px;margin-right:6px;border-radius:50%;border:1px solid rgba(0,0,0,.15)}
+.legend i.sq{border-radius:2px}
+.legend .ramp{display:inline-flex;gap:0;margin:0 6px}
+.legend .ramp i{border-radius:0;margin:0;width:16px;border:0}
+.pull{font:600 26px/1.25 var(--display);border-left:6px solid var(--link);padding:4px 0 4px 18px;margin:30px 0}
+.note{background:var(--panel);border:1px solid var(--rule);padding:14px 16px;font-size:16px;margin:22px 0}
+.note h3{margin-top:0}
+.time{list-style:none;padding:0;margin:14px 0 18px;border-left:2px dotted var(--link)}
+.time li{position:relative;padding:0 0 10px 18px;font-size:16px;line-height:1.45}
+.time li::before{content:"";position:absolute;left:-6px;top:7px;width:10px;height:10px;background:var(--link);border-radius:50%}
+.time li b{font:500 13px/1.4 var(--mono);display:block;color:var(--muted)}
+table.tbl{width:100%;border-collapse:collapse;font:400 13px/1.4 var(--mono)}
+table.tbl th{font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;padding:6px 6px 6px 0;border-bottom:2px solid var(--fg);position:sticky;top:0;background:var(--card)}
+table.tbl td{padding:6px 6px 6px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+table.tbl td.r,table.tbl th.r{text-align:right;white-space:nowrap}
+table.tbl tr[data-k]{cursor:pointer}
+table.tbl tr[data-k]:hover td{background:var(--panel)}
+table.tbl small{color:var(--muted)}
+.tablebox{max-height:460px;overflow:auto;border:1px solid var(--border);background:var(--card);padding:0 10px}
+details{margin:14px 0}
+summary{font:500 13px/1.4 var(--mono);cursor:pointer;color:var(--fg);padding:8px 0}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.cta a{font:500 13px/1 var(--mono);text-decoration:none;border:1px outset var(--border);padding:11px 14px;border-radius:2px;color:var(--fg);background:linear-gradient(var(--card),var(--chrome2))}
+.cta a.p{background:var(--link);border-color:var(--link);color:#fff}
+footer{border-top:6px double var(--fg);margin-top:56px;padding-top:16px;font:400 13px/1.55 var(--mono);color:var(--muted)}
+footer p{margin:0 0 10px}
+footer a{color:var(--muted)}
+.uc{height:10px;margin:22px 0 0;background:repeating-linear-gradient(45deg,var(--gold) 0 12px,var(--fg) 12px 24px);opacity:.75}
+.theme{position:fixed;right:12px;bottom:12px;z-index:1002}
+@media print{.theme,.controls{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="kicker"><b>Data study</b><span>The web</span><span>World, 1990 to 2000</span><span class="new">New!</span></div>
+<div class="browser">
+  <div class="bar" aria-hidden="true"><i></i><i></i><i></i><div class="addr"><span>http://</span>info.cern.ch/</div></div>
+  <header class="hero">
+    <h1>The <span class="a">first</span> <span class="b">websites</span></h1>
+    <svg class="mark" viewBox="0 0 120 120" aria-hidden="true"><g id="heroMark"></g></svg>
+    <p class="dek">On 20 December 1990 a computer at CERN, in Switzerland, began serving the world's first website. Ten years later {{firsts.n|int}} countries had at least one website on record. This is how the web spread: from physics laboratories to fan pages, and from Switzerland and California to every inhabited continent.</p>
+  </header>
+</div>
+<div class="byline">Dr Tristan Hotham · Independent researcher · 2026 · Data: Wikipedia (CC BY-SA 4.0); Wikidata (CC0); Natural Earth</div>
+
+<div class="stats">
+  <div><b>{{list.n|int}}</b><span>websites in Wikipedia's list of sites founded before 1995, from {{list.n_countries|int}} countries</span></div>
+  <div><b>{{list.us_pct_known|int}}%</b><span>of those with a known country were American</span></div>
+  <div><b>{{firsts.n|int}}</b><span>countries with a website recorded by 2000 in these sources</span></div>
+  <div><b>{{cctld.by2000|int}}</b><span>country code domains (.uk, .jp, .br...) created by 2000</span></div>
+</div>
+
+<p class="lede">The World Wide Web began as a tool for physicists. Tim Berners-Lee wrote the first web server and browser at CERN, the European particle physics laboratory, using a NeXT computer, and published the first website, info.cern.ch, on 20 December 1990. Within a year a laboratory in California, SLAC, had a server of its own, the first outside Europe. By the end of 1993 there were 623 websites; by the middle of 1995, some 23,500.</p>
+<p>Which came first, and where? Wikipedia keeps a list of {{list.n|int}} notable websites founded before 1995, and Wikidata, the free database behind Wikipedia, records the founding dates of thousands more. Neither is a census of the early web: the list picks out about {{web_counts.list_share_pct|int}}% of the sites that existed before 1995, and Wikidata's dates are patchy. But together they show the shape of the web's first decade. Press play on the map to watch it spread.</p>
+
+<h2><span class="n">&lt;01&gt; The map</span>From one server to {{firsts.n|int}} countries</h2>
+<div class="bleed" id="atlas">
+<div class="timebox"><button class="play" id="play" aria-label="Play through the years">&#9654;</button><span class="yv" id="yv">2000</span><input type="range" id="yr" min="1990" max="2000" step="1" value="2000" aria-label="Year"><span id="ylab" style="color:var(--muted);font-size:12px">everything to the end of the year</span></div>
+<div class="controls">
+  <div class="scrollrow" id="colRow"><span class="ctl-l">Colour countries by</span><button class="btn" data-c="web" aria-pressed="true">First recorded website</button><button class="btn" data-c="tld" aria-pressed="false">Country code domain</button></div>
+</div>
+<div class="controls">
+  <div class="searchbox"><input type="search" id="q" placeholder="Search a website or a country (CERN, Yahoo!, Japan...)" aria-label="Search a website or a country" autocomplete="off"><ul class="suggest" id="sug" role="listbox"></ul></div>
+</div>
+<div class="mapgrid">
+  <div><div id="map" class="lmap" data-fullscreen-map role="application" aria-label="World map of the first recorded websites by country and year"></div>
+    <div class="legend" id="legend"></div></div>
+  <div class="side" id="side" aria-live="polite"></div>
+</div>
+<p class="src">Countries: coloured by the year of the earliest website recorded for them in these sources, up to the year on the slider; a dark outline marks the {{firsts.n_list|int}} countries that appear in Wikipedia's pre-1995 list, the rest come from Wikidata founding dates, which may be the founding of the organisation behind a site rather than of the site. Faded: {{firsts.n_doubt|int}} countries whose Wikidata date comes before the country even had its own internet domain. Large dots: the {{list.plotted|int}} websites in the pre-1995 list with a known place, coloured by kind. Small dots: Wikidata websites from 1993 on with a headquarters location. Natural Earth outlines. Click anything.</p>
+</div>
+
+<h2><span class="n">&lt;02&gt; 1990 to 1992</span>The physicists' web</h2>
+<p>For its first two years the web belonged to laboratories. CERN's first site described the project itself, and Berners-Lee's catalogue of other sites there grew into the World Wide Web Virtual Library. In January 1991 the first web servers outside CERN were switched on, and in August Berners-Lee announced the project to the world in a Usenet post. Paul Kunz of the Stanford Linear Accelerator Center visited CERN that September, took the software home, and on {{entries.slac.when|raw}} SLAC launched the first web server outside Europe.</p>
+<ul class="time">
+<li><b>20 December 1990</b>info.cern.ch, the first website, published at CERN</li>
+<li><b>January 1991</b>The first web servers outside CERN switched on</li>
+<li><b>6 August 1991</b>Berners-Lee posts a summary of the project to the alt.hypertext newsgroup</li>
+<li><b>12 December 1991</b>SLAC, California: the first web server outside Europe</li>
+<li><b>February 1992</b>Nikhef, Amsterdam: the third website in the world, by the list's count</li>
+<li><b>April 1992</b>University College Cork, the first in Ireland, and the Hebrew University of Jerusalem, the first written right to left</li>
+<li><b>September 1992</b>KEK, the first web page in Japan</li>
+<li><b>30 April 1993</b>CERN puts the web in the public domain, free to anyone</li>
+</ul>
+<p>Of the {{list.n_9192|int}} sites the list dates to 1991 and 1992, {{list.sci_uni_9192|int}} belonged to laboratories, universities and libraries: CERN, SLAC, Fermilab and the supercomputing centre whose site became home to the Mosaic browser in the United States; Nikhef in the Netherlands; the IN2P3 institute in France; KEK in Japan. The rest were early experiments, such as a bluegrass music page hosted on a computer at Xerox's Palo Alto Research Center, which the list counts as the first music website.</p>
+<div class="figure"><p class="fig-h">How many websites were there?</p><p class="fig-sub">Counts of all the world's websites quoted in the introduction and year notes of Wikipedia's pre-1995 list, on a log scale. The article gives two different figures for the end of 1994. Hover a point.</p><div class="chart" id="countChart"></div></div>
+
+<h2><span class="n">&lt;03&gt; 1993 and 1994</span>Then everybody else</h2>
+<p>Everything changed in 1993. CERN released the web's code into the public domain in April, the graphical Mosaic browser made it easy to use, and the number of sites went from about fifty to more than six hundred in a year. The list reflects it: {{list.by_year.1991|int}} sites in 1991, {{list.by_year.1992|int}} in 1992, {{list.by_year.1993|int}} in 1993 and {{list.by_year.1994|int}} in 1994. And the kind of site changed with the numbers. In 1994 only {{list.sci_uni_94|int}} of the {{list.n_94|int}} listed sites belonged to laboratories or universities. The new web was companies (Apple, IBM, Microsoft, Pizza Hut's PizzaNet), newspapers and broadcasters (the BBC, The Economist, The Daily Telegraph, The Irish Times, Radio Prague), governments (the White House, HM Treasury, Birmingham City Council, the European Commission's CORDIS), search engines (Lycos, WebCrawler, Yahoo!) and {{list.fun_94|int}} sites for fans, hobbies and fun, the biggest group in the whole list: webcams, webcomics, the Simpsons Archive and a page that let you attack Barney the Dinosaur.</p>
+<div class="figure"><p class="fig-h">The pre-1995 list, by year and kind of website</p><p class="fig-sub">The {{list.n|int}} websites in Wikipedia's list, by the year section they sit in and by my reading of what each one was. Hover a block.</p><div class="chart" id="listYearChart"></div><div class="legend" id="typeLegend"></div></div>
+<p>Some of those firsts are household names: the Internet Movie Database went onto the web in late 1993, hosted at first by Cardiff University's computer science department; MIT's student newspaper The Tech was, by the list's account, the first newspaper on the web, in May 1993; the Trojan Room coffee pot, connected to the web in November 1993, was the first webcam; and JumpStation, hosted at the University of Stirling, was the first web search engine, in December 1993.</p>
+<div class="figure"><p class="fig-h">What happened to them</p><p class="fig-sub">Each listed website by kind, and whether the list's own text says it is still online (at the same or a new address), says it closed, or does not say. Hover a bar.</p><div class="chart" id="typeChart"></div><div class="legend" id="statusLegend"></div></div>
+<p>Do they still exist? The list's text says that {{list.live|int}} of the {{list.n|int}} ({{list.live_pct|int}}%) are still online, sometimes at a new address, and that {{list.gone|int}} have closed or been absorbed. For the other {{list.unstated|int}} it does not say, and I have not checked them myself, so these numbers are a floor for both. The survivors include arXiv, the physics preprint server that began at Los Alamos in April 1993, ExPASy, the first life sciences website, KEK's first page, and FogCam, a webcam at San Francisco State University that the list calls the oldest still operating.</p>
+
+<h2><span class="n">&lt;04&gt; Where</span>An American web, with a European cradle</h2>
+<p>The web was invented in Europe, but it took off in the United States. Of the {{list.known|int}} listed websites whose country I could place, {{list.us|int}} ({{list.us_pct_known|int}}%) were American, {{list.europe|int}} ({{list.europe_pct_known|int}}%) European and just {{list.rest|int}} elsewhere: Canada, Israel, Japan and Mexico, the last a site about the Zapatista uprising in Chiapas. The United Kingdom had {{list.gbr|int}} and Ireland, punching well above its weight, {{list.irl|int}}. For {{list.no_country|int}} entries the text gives no clue to where they were made.</p>
+<div class="figure"><p class="fig-h">The pre-1995 list, by country</p><p class="fig-sub">Country of each listed website: named in the list's text where it says, otherwise the well-known home of the organisation behind it (my assignment). Click a bar to see the country on the map.</p><div class="chart" id="listCountryChart"></div></div>
+<p class="pull">{{list.us_pct_known|int}}% of the early websites in Wikipedia's list whose country is known were American. The web's inventors were in Switzerland.</p>
+<p>That figure says as much about the list as about the web. It is an English-language list, written mostly by people who remember the American web, and it leans that way. Wikidata, built by editors all over the world, gives a different picture. Of the {{wd.country|int}} Wikidata websites founded from 1990 to 2000 with a country, only {{wd.us_pct|int}}% are American and {{wd.europe_pct|int}}% European, with Russia ({{wd.top.1.n|int}}), the United Kingdom ({{wd.top.2.n|int}}), Germany ({{wd.top.3.n|int}}) and France ({{wd.top.4.n|int}}) next after the United States ({{wd.top.0.n|int}}). Neither source is a census. But the list shows what English speakers remember; Wikidata shows how much the rest of the world built that is easy to forget.</p>
+
+<h2><span class="n">&lt;05&gt; Country by country</span>The web arrives</h2>
+<p>When did each country get its first website? No source can say for certain: most early sites left no trace. What these sources can give is the earliest website recorded for each country. By that measure the web reached {{firsts.cum_by_year.1992|int}} countries by the end of 1992, all of them through the list: Switzerland, the United States, the Netherlands, Ireland, Israel, Japan and France. {{firsts.cum_by_year.1994|int}} had a recorded website by the end of 1994 and {{firsts.n|int}} by 2000, countries home to {{firsts.pop_covered_pct|int}}% of the world's people today. The other {{firsts.no_record|int}} countries and territories on the map have no website recorded in these sources by 2000, which does not mean they had none.</p>
+<div class="figure"><p class="fig-h">Countries reached, year by year</p><p class="fig-sub">Countries with a recorded website (the earliest in the list or in Wikidata from 1993), and countries with their own country code internet domain (Wikidata's date for the domain), each counted from its first year. Hover a year.</p><div class="chart" id="spreadChart"></div><div class="legend" id="spreadLegend"></div></div>
+<p>The domains came first. A country code such as .ch or .jp is delegated to a national registry, and most of the countries that had websites early already had one: the United States' .us dates from {{cctld.us_month|raw}} in Wikidata, and {{cctld.by1990|int}} country domains existed by the end of 1990. For the {{cctld.gap_list_n|int}} countries in the list, the first recorded website came a median of {{cctld.gap_list_median|int}} years after the country's domain (only Luxembourg's came first, by Wikidata's dates). The domains themselves kept spreading through the decade, peaking at {{cctld.peak_n|int}} new ones in {{cctld.peak_year|raw}}; {{cctld.by2000|int}} existed by 2000. Switch the map to "Country code domain" to watch them.</p>
+<div class="figure"><p class="fig-h">The earliest recorded website in each country</p><p class="fig-sub">{{firsts.n|int}} countries, in order. Source: the pre-1995 list, or the earliest Wikidata website from 1993 on. Marked ?: dated before the country had its own domain, so probably the founding of the organisation, not its website. Click a row to see it on the map.</p><div class="tablebox"><table class="tbl" id="firstTable"></table></div></div>
+
+<h2><span class="n">&lt;06&gt; The decade in Wikidata</span>{{wd.n|int}} websites, 1990 to 2000</h2>
+<p>Wikidata lists {{wd.items|int}} websites with a founding date ("inception") up to 2000. Many of those dates cannot be the date a website went up: {{wd.pre1990|int}} come before 1990, such as the Buenos Aires Herald, founded as a newspaper in {{wd.bah_year|raw}}. I treat those as the founding of the organisation and leave them out. That leaves {{wd.n|int}} websites founded from 1990 to 2000. Their number rises from {{wd.y1994|int}} in 1994 to {{wd.y1995|int}} in 1995 and peaks at {{wd.peak_n|int}} in {{wd.peak_year|raw}}; {{wd.since1995_pct|int}}% date from 1995 or later.</p>
+<div class="figure"><p class="fig-h">Wikidata websites founded each year, by region</p><p class="fig-sub">Websites with an inception from 1990 to 2000, by the country Wikidata gives (or the country of their headquarters). Grey: no country recorded. Hover a bar.</p><div class="chart" id="wdYearChart"></div><div class="legend" id="regionLegend"></div></div>
+<p>Even after 1990 the dates need care. Wikidata has {{wd.early|int}} websites founded from 1990 to 1992, more than twice the fifty to sixty sites that existed in the whole world at the end of 1992. Many are newspapers, societies and agencies whose founding date has been copied to their website. That is why the map and the country table use Wikidata dates only from 1993 on, and why even those are "earliest recorded", not proof. Coverage is thin, too: only {{wd.country_pct|int}}% of these websites have a country in Wikidata and {{wd.coords_pct|int}}% a headquarters location that can be mapped.</p>
+<div class="figure"><p class="fig-h">The United States, Europe and the rest</p><p class="fig-sub">Share of each year's websites by region. Lines: Wikidata websites with a known country. Squares: the pre-1995 list (1991 to 1994). Hover a year.</p><div class="chart" id="shareChart"></div><div class="legend" id="shareLegend"></div></div>
+<p>The two sources disagree about the shape of the early web, and both are biased. In the list the United States holds a majority of the sites with a known country from 1992 on ({{list.us_share_by_year.1994|int}}% in 1994). In Wikidata its share swings between {{wd.us_min_pct|int}}% and {{wd.us_max_pct|int}}% from year to year, because the numbers are small, and averages {{wd.united_1990_1994_pct|int}}% for 1990 to 1994 and {{wd.united_1995_2000_pct|int}}% for 1995 to 2000. If I add the {{wd.url_extra|int}} sites without a country whose own address ends in a country code (.pl, .de, .ru...), the American share falls to {{wd.plus_us_pct|int}}%. American sites mostly used .com, so the websites with no recorded country are probably more American than the rest, and the true share is likely higher than Wikidata's figure, but nothing in the data says by how much.</p>
+
+<h2><span class="n">&lt;07&gt; The list</span>All {{list.n|int}} websites</h2>
+<div class="figure"><p class="fig-h">Wikipedia's list of websites founded before 1995</p><p class="fig-sub">With my coding of country, kind and status. Click a row to see it on the map; the name links to the list's entry.</p><div class="tablebox"><table class="tbl" id="listTable"></table></div></div>
+
+<h2><span class="n">&lt;08&gt; How I did this</span>Methods and caveats</h2>
+<p><b>The list.</b> Wikipedia's "List of websites founded before 1995" is prose, not a table: a heading for each year from 1991 to 1994 and a short paragraph for each website. I split it into its {{list.rows|int}} entries; Chabad.org appears under both 1993 and 1994 and I count it once, in 1993. The year is the section the entry sits in, although one entry (Wired) says itself that it launched later, and the list puts CERN in 1991 while its sister article "History of the World Wide Web" dates info.cern.ch to 20 December 1990, which the map follows. The country, place and kind of each website are my reading of its paragraph: where the text names a place (a university, a laboratory, a city) I use it ({{list.basis.text|int}} entries); otherwise I use the well-known home of the organisation behind it ({{list.basis.org|int}}), or the country alone ({{list.basis.country|int}}); {{list.basis.none|int}} give no clue and have no country. Status counts only what the text says, checked phrase by phrase.</p>
+<p><b>Wikidata.</b> Every item that is an instance of website, or of a kind of website, with an inception up to 2000: {{wd.items|int}} items. An item's country is the country containing its headquarters coordinates where Wikidata has them, otherwise the country Wikidata gives. Inceptions before 1990 are the founding of the organisation behind the site and are not counted as web dates; {{wd.newsgroups|word}} Usenet newsgroups typed as websites are left out. For the earliest website in a country, Wikidata dates count only from 1993, because the 1990 to 1992 dates are mostly organisations' founding years. Europe means Natural Earth's continent, so it includes Russia.</p>
+<p><b>Domains.</b> Wikidata's inception date for each two-letter country code top-level domain, matched to countries by the code ({{cctld.matched_dated|int}} with a date). Wikipedia's ccTLD table gives a year (or "1990+") for only {{cctld.wiki_with_year|int}} of {{cctld.wiki_rows|int}} two-letter codes; where both exist they agree for {{cctld.agree|int}} of {{cctld.both|int}}. For the flag on doubtful dates, a country's domain includes its predecessor (.su for the former Soviet states, .yu for Serbia, .cs for the Czech Republic and Slovakia, .an for Curaçao).</p>
+<p><b>What this is not.</b> A census. The list covers about {{web_counts.list_share_pct|int}}% of the {{web_counts.pre1995|int}} websites it says were set up before 1995, chosen because they survive or mattered. Wikidata has only what its editors have added. "First recorded" means first in these sources: the first website Wikidata happens to record for a country need not be its first, and some countries' first record is a newspaper whose founding year has been copied to its website.</p>
+<details><summary>Sources and licences</summary>
+<ul>
+<li>Wikipedia, "List of websites founded before 1995" (revision {{source.revids.List of websites founded before 1995|raw}}), "History of the World Wide Web" (revision {{source.revids.History of the World Wide Web|raw}}), "Country code top-level domain" (revision {{source.revids.Country code top-level domain|raw}}) and "List of Internet top-level domains" (revision {{source.revids.List of Internet top-level domains|raw}}). CC BY-SA 4.0. Facts are taken from them; no Wikipedia text is reproduced.</li>
+<li>Wikidata, websites (Q35127 and its subclasses) and country code top-level domains (Q42032), queried through QLever. CC0.</li>
+<li>Natural Earth country outlines and populated places (public domain).</li>
+</ul></details>
+
+<div class="cta"><a class="p" href="https://doi.org/10.5281/zenodo.23878602">Read the paper</a><a href="https://github.com/Tristan-Hotham/first-websites">Data and code</a><a href="https://blog.tristanhotham.com/2026/10/31/first-websites/">Blog post</a></div>
+
+<footer>
+<div class="uc" aria-hidden="true"></div>
+<p style="margin-top:14px">Dr Tristan Hotham, Independent researcher. ORCID <a href="https://orcid.org/0000-0003-4931-9349">0000-0003-4931-9349</a>.</p>
+<p>Cite as: Hotham, T. (2026) The first websites: how the World Wide Web spread around the world, 1990 to 2000. Zenodo. <a href="https://doi.org/10.5281/zenodo.23878602">https://doi.org/10.5281/zenodo.23878602</a></p>
+<p>Data: Wikipedia (CC BY-SA 4.0), Wikidata (CC0), Natural Earth (public domain). Licence: derived data and text CC BY 4.0, code MIT.</p>
+<p>I wrote the text, with drafting and editing assistance from Claude (Anthropic), which also helped prepare the analysis code. I reviewed and checked all text and results.</p>
+</footer>
+</div>
+<div class="tip" id="tip"></div>
+<button class="btn theme" id="theme" aria-label="Toggle dark mode">◐</button>
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script>
+const R = /*RESULTS*/;
+const SITE = /*SITE*/;
+const WORLD = /*WORLD*/;
+const CITIES = /*CITIES*/;
+const fmt = n => n == null || n === "" ? "n/a" : Math.round(n).toLocaleString("en-GB");
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const tip = document.getElementById("tip");
+function showTip(h, x, y) { tip.innerHTML = h; tip.style.display = "block"; const w = tip.offsetWidth; x = Math.max(w / 2 + 8, Math.min(innerWidth - w / 2 - 8, x)); tip.style.left = x + scrollX + "px"; tip.style.top = y + scrollY + "px"; }
+function hideTip() { tip.style.display = "none"; }
+document.addEventListener("click", e => { if (!e.target.closest || !e.target.closest(".chart")) hideTip(); });
+const NS = "http://www.w3.org/2000/svg";
+const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+const lbl = (svg, x, y, s, cls = "lab", anchor = "start") => { const t = el("text", { x, y, class: cls, "text-anchor": anchor }, svg); t.textContent = s; return t; };
+const redraws = [];
+function resp(box, render) { let last = 0; const go = force => { const w = Math.max(280, Math.round(box.clientWidth)); if (!force && Math.abs(w - last) < 4) return; last = w; box.innerHTML = ""; render(w, w < 560); }; new ResizeObserver(() => go()).observe(box); go(); redraws.push(() => go(true)); }
+const isDark = () => { const r = document.documentElement; return r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; };
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const small = () => innerWidth < 900;
+const Y0 = 1990, Y1 = 2000;
+const TYPES = SITE.types, TC = TYPES.map(t => t[1]), TNAME = TYPES.map(t => t[0]);
+const REG = SITE.regions, RC = REG.map(r => r[1]), RNAME = REG.map(r => r[0]);
+const CN = SITE.cn, cname = i => CN[i] ? CN[i][0] : "";
+const LIST = SITE.list.map(r => { const o = {}; SITE.list_cols.forEach((c, k) => o[c] = r[k]); return o; });
+const WD = SITE.wd.map((r, i) => { const o = { i }; SITE.wd_cols.forEach((c, k) => o[c] = r[k]); return o; });
+const FIRST = SITE.firsts, TLD = SITE.cctld;
+const wyear = r => r.n === 1 ? 1990 : r.year;               // CERN: 20 December 1990, from History of the World Wide Web
+const STATUS = { live: "still online, says the list", gone: "closed or absorbed, says the list", "": "not stated in the list" };
+const wikiA = (t, s) => t ? `<a href="https://en.wikipedia.org/wiki/${esc(t)}" target="_blank" rel="noopener">${esc(s || decodeURIComponent(t).replace(/_/g, " "))}</a>` : "";
+const urlA = u => { if (!u) return ""; const h = /^https?:/.test(u) ? u : "http://" + u; return `<a href="${esc(h)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\//, "").replace(/\/$/, ""))}</a>`; };
+
+/* year colours: early deep blue to late gold (one per year 1990 to 2000), and a grey for domains before 1990 */
+const YC = SITE.ycol;
+const PRE = "#6B6F78";
+const ycol = y => y < Y0 ? PRE : YC[Math.min(10, y - Y0)];
+
+/* hero mark: a globe of hyperlinks */
+(function () {
+  const g = document.getElementById("heroMark");
+  el("circle", { cx: 60, cy: 60, r: 44, fill: "none", stroke: "currentColor", "stroke-width": 3 }, g);
+  el("ellipse", { cx: 60, cy: 60, rx: 18, ry: 44, fill: "none", stroke: "currentColor", "stroke-width": 2 }, g);
+  el("path", { d: "M18 46 H102 M18 74 H102", stroke: "currentColor", "stroke-width": 2 }, g);
+  [[34, 34, "#1B2A7A"], [86, 40, "#7E5FB8"], [72, 88, "#F2A646"], [38, 82, "#DB6B72"]].forEach(([x, y, c]) => el("circle", { cx: x, cy: y, r: 6, fill: c, stroke: "#fff", "stroke-width": 1.5 }, g));
+  el("path", { d: "M34 34 L86 40 L72 88 L38 82 Z", fill: "none", stroke: "#1A3FD0", "stroke-width": 1.6, "stroke-dasharray": "3 3" }, g);
+})();
+
+/* ---------- state ---------- */
+const LYDEF = { col: "web", list: true, wd: true, borders: true, cnames: false, cities: false };
+const LY = { ...LYDEF };
+try { Object.assign(LY, JSON.parse(localStorage.getItem("fw_layers") || "{}")); } catch (e) {}
+const saveLY = () => { try { localStorage.setItem("fw_layers", JSON.stringify(LY)); } catch (e) {} };
+const S = { y: Y1, sel: null, play: null };
+function countryColour(i) {
+  if (LY.col === "web") { const f = FIRST[i]; return f && f[0] <= S.y ? ycol(f[0]) : null; }
+  const t = TLD[i]; return t && t[1] <= S.y ? ycol(t[1]) : null;
+}
+const faded = i => LY.col === "web" && FIRST[i] && FIRST[i][8] === 1;
+const LISTISO = new Set(Object.keys(FIRST).filter(i => FIRST[i][2] === "list"));
+
+/* ---------- popups ---------- */
+function listPop(r) {
+  const rows = [["When", r.when || String(wyear(r))], ["Listed under", String(r.year)], ["Kind", TNAME[r.type]], ["Where", r.iso ? cname(r.iso) + (r.basis === "org" ? " (my placing)" : "") : "not known"], ["Today", STATUS[r.status]]];
+  if (r.host) rows.push(["Address", urlA(r.host)]);
+  return `<b class="t">${esc(r.name)}</b><div class="al">Wikipedia's list of websites founded before 1995</div><table>${rows.map(x => `<tr><td>${x[0]}</td><td>${x[0] === "Address" ? x[1] : esc(x[1])}</td></tr>`).join("")}</table>` +
+    `<small>${r.wiki ? wikiA(r.wiki, "Wikipedia article") + " · " : ""}<a href="https://en.wikipedia.org/wiki/List_of_websites_founded_before_1995#${esc(r.hid)}" target="_blank" rel="noopener">entry in the list</a></small>`;
+}
+function wdPop(r) {
+  const rows = [["Inception", r.date.endsWith("-01-01") ? String(r.year) : r.date], ["Country", r.iso ? cname(r.iso) : "not recorded"]];
+  if (r.url) rows.push(["Address", urlA(r.url)]);
+  return `<b class="t">${esc(r.name)}</b><div class="al">Wikidata website (the inception may be the founding of the organisation behind it)</div><table>${rows.map(x => `<tr><td>${x[0]}</td><td>${x[0] === "Address" ? x[1] : esc(x[1])}</td></tr>`).join("")}</table>` +
+    `<small>${r.wiki ? wikiA(r.wiki, "Wikipedia article") + " · " : ""}<a href="https://www.wikidata.org/wiki/${esc(r.q)}" target="_blank" rel="noopener">Wikidata ${esc(r.q)}</a></small>`;
+}
+
+/* ---------- map (MapLibre, with a plain SVG map as fallback) ---------- */
+let map = null, mapOK = false, popup = null, fallback = null;
+const HOME = () => innerWidth < 600 ? { center: [12, 30], zoom: -0.25 } : small() ? { center: [10, 30], zoom: 0.4 } : { center: [10, 30], zoom: 1.05 };
+function fillExpr() {
+  const pairs = []; Object.keys(CN).forEach(i => { const c = countryColour(i); if (c) pairs.push(i, c); });
+  return pairs.length ? ["match", ["get", "iso"], ...pairs, css("--unlit")] : css("--unlit");
+}
+function opExpr() { const f = Object.keys(FIRST).filter(i => faded(i) && countryColour(i)); return f.length ? ["match", ["get", "iso"], f, .42, .92] : .92; }
+(function () { const g = {}; LIST.filter(r => r.lat != null).forEach(r => (g[r.lat + "," + r.lon] = g[r.lat + "," + r.lon] || []).push(r));
+  Object.values(g).forEach(a => { if (a.length < 2) return; a.forEach((r, k) => { const t = 2 * Math.PI * k / a.length; r.lat += .012 * Math.sin(t); r.lon += .018 * Math.cos(t); }); }); })();
+const listGeo = () => ({ type: "FeatureCollection", features: LIST.filter(r => r.lat != null).map(r => ({ type: "Feature", properties: { n: r.n, t: r.type, y: wyear(r) }, geometry: { type: "Point", coordinates: [r.lon, r.lat] } })) });
+const wdGeo = () => ({ type: "FeatureCollection", features: WD.filter(r => r.lat != null && r.year >= 1993).map(r => ({ type: "Feature", properties: { i: r.i, y: r.year }, geometry: { type: "Point", coordinates: [r.lon, r.lat] } })) });
+function initMap() {
+  const box = document.getElementById("map");
+  layerControl(box);
+  if (!window.maplibregl) return startFallback("The interactive map library could not load here, so this is a plain map drawn from Natural Earth outlines.");
+  try {
+    map = new maplibregl.Map({ container: "map", ...HOME(), minZoom: -1, maxZoom: 9, attributionControl: false, dragRotate: false, pitchWithRotate: false, renderWorldCopies: false,
+      style: { version: 8, sources: {}, layers: [{ id: "bg", type: "background", paint: { "background-color": css("--sea") } }] } });
+  } catch (e) { return startFallback("This browser could not start the interactive map (it needs WebGL), so this is a plain map drawn from Natural Earth outlines."); }
+  window.map = map;
+  map.touchZoomRotate.disableRotation();
+  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "bottom-right");
+  map.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: "Data: Wikipedia (CC BY-SA), Wikidata (CC0) · Outlines: Natural Earth" }), "bottom-left");
+  map.on("error", () => {});
+  map.on("load", () => {
+    mapOK = true;
+    const at = document.querySelector(".maplibregl-ctrl-attrib.maplibregl-compact"); if (at) { at.classList.remove("maplibregl-compact-show"); at.removeAttribute("open"); }
+    map.addSource("world", { type: "geojson", data: WORLD });
+    map.addSource("list", { type: "geojson", data: listGeo() });
+    map.addSource("wd", { type: "geojson", data: wdGeo() });
+    map.addLayer({ id: "land", type: "fill", source: "world", paint: { "fill-color": fillExpr(), "fill-opacity": opExpr() } });
+    map.addLayer({ id: "borders", type: "line", source: "world", paint: { "line-color": css("--coast"), "line-width": ["interpolate", ["linear"], ["zoom"], 0, .3, 5, .9] } });
+    map.addLayer({ id: "listed", type: "line", source: "world", filter: ["in", ["get", "iso"], ["literal", []]], paint: { "line-color": isDark() ? "#ECEEF1" : "#1D2128", "line-width": ["interpolate", ["linear"], ["zoom"], 0, 1, 5, 2] } });
+    map.addLayer({ id: "sel", type: "line", source: "world", filter: ["==", ["get", "iso"], ""], paint: { "line-color": css("--hot"), "line-width": 2.4 } });
+    map.addLayer({ id: "wd", type: "circle", source: "wd", paint: { "circle-radius": ["interpolate", ["linear"], ["zoom"], 0, 1.6, 4, 2.8, 8, 4.5], "circle-color": isDark() ? "#C9CED6" : "#3B3F48", "circle-opacity": .6 } });
+    map.addLayer({ id: "list", type: "circle", source: "list", paint: { "circle-radius": ["interpolate", ["linear"], ["zoom"], 0, 4, 4, 6, 8, 9], "circle-color": ["match", ["get", "t"], ...TC.flatMap((c, k) => [k, c]), "#999"],
+      "circle-stroke-color": isDark() ? "#12151B" : "#FFFFFF", "circle-stroke-width": 1.3 } });
+    paint();
+    const hitL = () => ["list", "wd"].filter(l => map.getLayoutProperty(l, "visibility") !== "none");
+    map.on("mousemove", e => {
+      const f = map.queryRenderedFeatures(e.point, { layers: hitL() })[0];
+      const r = map.getContainer().getBoundingClientRect();
+      if (f) { map.getCanvas().style.cursor = "pointer"; const o = f.layer.id === "list" ? LIST.find(x => x.n === f.properties.n) : WD[f.properties.i];
+        return showTip(`<b>${esc(o.name)}</b><br>${f.layer.id === "list" ? esc(o.when || wyear(o)) + " · " + esc(TNAME[o.type]) : "Wikidata, " + o.year}`, r.left + e.point.x, r.top + e.point.y); }
+      const c = map.queryRenderedFeatures(e.point, { layers: ["land"] })[0]; map.getCanvas().style.cursor = c ? "pointer" : "";
+      if (c) { const i = c.properties.iso; showTip(`<b>${esc(cname(i))}</b><br>${ctip(i)}`, r.left + e.point.x, r.top + e.point.y); } else hideTip();
+    });
+    map.on("mouseout", hideTip);
+    map.on("click", e => {
+      hideTip(); const f = map.queryRenderedFeatures(e.point, { layers: hitL() })[0];
+      if (f) { if (f.layer.id === "list") pickList(f.properties.n, { fly: false, ll: e.lngLat }); else pickWd(f.properties.i, { fly: false, ll: e.lngLat }); return; }
+      const c = map.queryRenderedFeatures(e.point, { layers: ["land"] })[0];
+      if (c) pickCountry(c.properties.iso, { fly: false });
+    });
+    map.on("moveend", placeNames);
+  });
+  setTimeout(() => { if (!mapOK && !fallback) { try { map.remove(); } catch (e) {} map = null; startFallback("The interactive map did not start here, so this is a plain map drawn from Natural Earth outlines."); } }, 8000);
+}
+function ctip(i) {
+  const f = FIRST[i], t = TLD[i];
+  return (f ? `first recorded website ${f[0]}${f[8] ? "?" : ""}: ${esc(f[1])}` : "no website recorded by 2000") + (t ? `<br>domain ${esc(t[0])} ${t[1]}` : "");
+}
+function paint() {
+  if (mapOK) {
+    map.setPaintProperty("land", "fill-color", fillExpr()); map.setPaintProperty("land", "fill-opacity", opExpr());
+    const lit = [...LISTISO].filter(i => LY.col === "web" && FIRST[i][0] <= S.y);
+    map.setFilter("listed", ["in", ["get", "iso"], ["literal", lit]]);
+    map.setFilter("list", ["<=", ["get", "y"], S.y]); map.setFilter("wd", ["<=", ["get", "y"], S.y]);
+    map.setFilter("sel", ["==", ["get", "iso"], S.sel && S.sel.iso ? S.sel.iso : ""]);
+    map.setLayoutProperty("list", "visibility", LY.list ? "visible" : "none"); map.setLayoutProperty("wd", "visibility", LY.wd ? "visible" : "none");
+    map.setLayoutProperty("borders", "visibility", LY.borders ? "visible" : "none");
+    placeNames();
+  }
+  if (fallback) fallback.paint();
+}
+let nameMarkers = [];
+function placeNames() {
+  nameMarkers.forEach(m => m.remove()); nameMarkers = [];
+  if (!mapOK) return;
+  const z = map.getZoom(), b = map.getBounds(), bxs = [];
+  const put = (lon, lat, html, cls, w, hgt, anchor = "center") => {
+    if (!b.contains([lon, lat])) return false; const pt = map.project([lon, lat]);
+    const bx = anchor === "left" ? [pt.x - 4, pt.y - hgt / 2, pt.x + w, pt.y + hgt / 2] : [pt.x - w / 2, pt.y - hgt / 2, pt.x + w / 2, pt.y + hgt / 2];
+    if (bxs.some(o => bx[0] < o[2] && bx[2] > o[0] && bx[1] < o[3] && bx[3] > o[1])) return false; bxs.push(bx);
+    const d = document.createElement("div"); d.className = cls; d.innerHTML = html; nameMarkers.push(new maplibregl.Marker({ element: d, anchor }).setLngLat([lon, lat]).addTo(map)); return true;
+  };
+  if (LY.cnames) { const minPop = z < 1.6 ? 8e7 : z < 2.6 ? 2e7 : z < 3.6 ? 4e6 : 0; let n = 0;
+    Object.entries(CN).sort((a, c) => c[1][3] - a[1][3]).forEach(([iso, m]) => { if (m[3] < minPop || n > 60) return; if (put(m[1], m[2], esc(m[0]), "cntL", m[0].length * 7.2, 13)) n++; }); }
+  if (LY.cities && z >= 2.3) { const minPop = z < 3.5 ? 5e6 : z < 4.5 ? 1.5e6 : z < 6 ? 5e5 : 0; let n = 0;
+    for (const c of CITIES) { if (c.pop < minPop) continue; if (put(c.lon, c.lat, `<i></i>${esc(c.name)}`, "cityL", 10 + c.name.length * 6.6, 14, "left")) n++; if (n > 40) break; } }
+}
+function layerControl(box) {
+  const d = document.createElement("div"); d.className = "lyr";
+  d.innerHTML = `<button class="lyrBtn" aria-expanded="false">Map layers</button>
+<div class="lyrPanel" hidden>
+ <div class="row"><label style="font-weight:400">Colour countries by</label><select data-k="col" aria-label="Colour countries by"><option value="web">First recorded website</option><option value="tld">Country code domain</option></select></div>
+ <div class="hd">Websites</div>
+ <div class="row"><label><input type="checkbox" data-k="list"> Pre-1995 list (by kind)</label></div>
+ <div class="row"><label><input type="checkbox" data-k="wd"> Wikidata websites, 1993 on</label></div>
+ <div class="hd">Base map</div>
+ <div class="row"><label><input type="checkbox" data-k="borders"> Borders and coasts</label></div>
+ <div class="row"><label><input type="checkbox" data-k="cnames"> Country names</label></div>
+ <div class="row"><label><input type="checkbox" data-k="cities"> City names</label></div>
+ <p class="sub">The base map is drawn from Natural Earth outlines, so it needs no online tiles.</p>
+ <button class="reset">Reset layers</button>
+</div>`;
+  ["click", "dblclick", "mousedown", "touchstart", "wheel", "pointerdown"].forEach(t => d.addEventListener(t, e => e.stopPropagation(), { passive: t !== "click" }));
+  const btn = d.querySelector(".lyrBtn"), pan = d.querySelector(".lyrPanel");
+  btn.onclick = () => { const o = pan.hidden; pan.hidden = !o; btn.setAttribute("aria-expanded", o); };
+  const sync = () => { pan.querySelectorAll("[data-k]").forEach(i => { const k = i.dataset.k; if (i.type === "checkbox") i.checked = LY[k]; else i.value = LY[k]; }); pressCol(); };
+  pan.querySelectorAll("[data-k]").forEach(i => i.addEventListener("change", () => { const k = i.dataset.k; LY[k] = i.type === "checkbox" ? i.checked : i.value; saveLY(); sync(); paint(); legend(); side(); }));
+  pan.querySelector(".reset").onclick = () => { Object.assign(LY, LYDEF); saveLY(); sync(); paint(); legend(); side(); };
+  window.syncLayers = sync; sync();
+  box.appendChild(d);
+}
+function retheme() {
+  if (mapOK) {
+    map.setPaintProperty("bg", "background-color", css("--sea")); map.setPaintProperty("borders", "line-color", css("--coast"));
+    map.setPaintProperty("listed", "line-color", isDark() ? "#ECEEF1" : "#1D2128"); map.setPaintProperty("wd", "circle-color", isDark() ? "#C9CED6" : "#3B3F48");
+    map.setPaintProperty("list", "circle-stroke-color", isDark() ? "#12151B" : "#FFFFFF"); map.setPaintProperty("sel", "line-color", css("--hot"));
+  }
+  paint();
+}
+
+/* the fallback: an equirectangular SVG map of the same data */
+function startFallback(msg) {
+  const box = document.getElementById("map");
+  box.insertAdjacentHTML("beforeend", `<div class="mapfail">${esc(msg)}</div>`);
+  const W = 1000, H = 470, P = (lon, lat) => [(lon + 180) / 360 * W, (84 - lat) / 168 * H];
+  const svg = el("svg", { class: "svgmap", viewBox: `0 0 ${W} ${H}`, preserveAspectRatio: "xMidYMid meet", role: "img", "aria-label": "World map of the first recorded websites" });
+  box.insertBefore(svg, box.firstChild);
+  el("rect", { x: 0, y: 0, width: W, height: H, fill: "var(--sea)" }, svg);
+  const paths = {};
+  WORLD.features.forEach(f => { const g = f.geometry, polys = g.type === "MultiPolygon" ? g.coordinates : [g.coordinates]; let d = "";
+    polys.forEach(poly => poly.forEach(ring => { ring.forEach((c, k) => { const [x, y] = P(c[0], Math.max(-84, Math.min(84, c[1]))); d += (k ? "L" : "M") + x.toFixed(1) + " " + y.toFixed(1); }); d += "Z"; }));
+    const p = el("path", { d }, svg); p.style.cursor = "pointer"; p.addEventListener("click", ev => { ev.stopPropagation(); pickCountry(f.properties.iso, { fly: false }); });
+    p.addEventListener("mousemove", ev => showTip(`<b>${esc(cname(f.properties.iso))}</b><br>${ctip(f.properties.iso)}`, ev.clientX, ev.clientY)); p.addEventListener("mouseleave", hideTip);
+    (paths[f.properties.iso] = paths[f.properties.iso] || []).push(p); });
+  const gw = el("g", {}, svg), gl = el("g", {}, svg);
+  const popAt = (html, x, y) => { box.querySelectorAll(".pop").forEach(n => n.remove()); const d = document.createElement("div"); d.className = "pop"; d.innerHTML = `<button class="x" aria-label="Close">×</button>` + html;
+    box.appendChild(d); const r = box.getBoundingClientRect(); d.style.left = Math.max(4, Math.min(r.width - d.offsetWidth - 4, x - d.offsetWidth / 2)) + "px"; d.style.top = Math.max(4, y - d.offsetHeight - 12) + "px"; d.querySelector(".x").onclick = () => d.remove(); };
+  const wdC = WD.filter(r => r.lat != null && r.year >= 1993).map(r => { const [x, y] = P(r.lon, r.lat); const c = el("circle", { cx: x, cy: y, r: 1.6, fill: isDark() ? "#C9CED6" : "#3B3F48", opacity: .6 }, gw);
+    c.addEventListener("click", ev => { ev.stopPropagation(); const b = box.getBoundingClientRect(); popAt(wdPop(r), ev.clientX - b.left, ev.clientY - b.top); }); return [r, c]; });
+  const lC = LIST.filter(r => r.lat != null).map(r => { const [x, y] = P(r.lon, r.lat); const c = el("circle", { cx: x, cy: y, r: 4.2, fill: TC[r.type], stroke: "#fff", "stroke-width": 1 }, gl);
+    c.addEventListener("click", ev => { ev.stopPropagation(); const b = box.getBoundingClientRect(); popAt(listPop(r), ev.clientX - b.left, ev.clientY - b.top); }); return [r, c]; });
+  fallback = { paint() {
+      Object.entries(paths).forEach(([i, ps]) => { const c = countryColour(i); ps.forEach(p => { p.setAttribute("fill", c || css("--unlit")); p.setAttribute("fill-opacity", c && faded(i) ? .42 : 1);
+        p.style.stroke = S.sel && S.sel.iso === i ? css("--hot") : LISTISO.has(i) && c && LY.col === "web" ? css("--fg") : ""; p.style.strokeWidth = S.sel && S.sel.iso === i ? "2" : LISTISO.has(i) && c && LY.col === "web" ? "1.2" : ""; }); });
+      wdC.forEach(([r, c]) => c.style.display = LY.wd && r.year <= S.y ? "" : "none");
+      lC.forEach(([r, c]) => c.style.display = LY.list && wyear(r) <= S.y ? "" : "none");
+    }, pop: popAt, P };
+  window.fallback = fallback;
+  fallback.paint();
+}
+function flyTo(lon, lat, z) { if (mapOK) map.flyTo({ center: [lon, lat], zoom: z, speed: 1.4 }); }
+function toMap() { if (small()) document.getElementById("map").scrollIntoView({ behavior: "smooth", block: "start" }); }
+function openPop(html, lon, lat) {
+  if (mapOK) { if (popup) popup.remove(); popup = new maplibregl.Popup({ offset: 10, maxWidth: "300px" }).setLngLat([lon, lat]).setHTML(html).addTo(map); }
+  else if (fallback) { const [x, y] = fallback.P(lon, lat), box = document.getElementById("map"), sv = box.querySelector("svg").getBoundingClientRect(), b = box.getBoundingClientRect(), k = sv.width / 1000, ky = sv.height / 470, s = Math.min(k, ky);
+    fallback.pop(html, (sv.width - 1000 * s) / 2 + x * s + (sv.left - b.left), (sv.height - 470 * s) / 2 + y * s + (sv.top - b.top)); }
+}
+function pickList(n, o = {}) {
+  const r = LIST.find(x => x.n === n); S.sel = { kind: "list", n, iso: r.iso };
+  if (wyear(r) > S.y) setYear(Y1, true);
+  if (!LY.list) { LY.list = true; window.syncLayers(); }
+  paint(); side();
+  if (r.lat != null) { if (o.fly) { flyTo(r.lon, r.lat, 4.2); toMap(); } openPop(listPop(r), o.ll ? o.ll.lng : r.lon, o.ll ? o.ll.lat : r.lat); }
+}
+function pickWd(i, o = {}) {
+  const r = WD[i]; S.sel = { kind: "wd", i, iso: r.iso };
+  if (r.year > S.y) setYear(Y1, true);
+  paint(); side();
+  if (r.lat != null) { if (o.fly) { flyTo(r.lon, r.lat, 4.2); toMap(); } openPop(wdPop(r), o.ll ? o.ll.lng : r.lon, o.ll ? o.ll.lat : r.lat); }
+}
+function pickCountry(i, o = {}) {
+  S.sel = { kind: "country", iso: i }; if (popup) popup.remove(); paint(); side();
+  if (o.fly && CN[i]) { flyTo(CN[i][1], CN[i][2], ["RUS", "USA", "CAN", "CHN", "BRA", "AUS"].includes(i) ? 1.8 : 3.4); toMap(); }
+}
+function unpick() { S.sel = null; if (popup) popup.remove(); document.querySelectorAll("#map .pop").forEach(n => n.remove()); paint(); side(); }
+
+/* ---------- controls ---------- */
+const yr = document.getElementById("yr");
+function setYear(y, keep) { S.y = Math.max(Y0, Math.min(Y1, y)); yr.value = S.y; document.getElementById("yv").textContent = S.y; paint(); legend(); if (!keep) side(); }
+yr.addEventListener("input", () => { stop(); setYear(+yr.value); });
+function stop() { if (S.play) { clearInterval(S.play); S.play = null; document.getElementById("play").innerHTML = "&#9654;"; } }
+document.getElementById("play").onclick = () => {
+  if (S.play) return stop();
+  if (S.y >= Y1) setYear(Y0);
+  document.getElementById("play").innerHTML = "&#10074;&#10074;";
+  S.play = setInterval(() => { if (S.y >= Y1) return stop(); setYear(S.y + 1); }, 1100);
+};
+function pressCol() { document.querySelectorAll("#colRow .btn").forEach(b => b.setAttribute("aria-pressed", b.dataset.c === LY.col)); }
+document.querySelectorAll("#colRow .btn").forEach(b => b.onclick = () => { LY.col = b.dataset.c; saveLY(); window.syncLayers && window.syncLayers(); pressCol(); paint(); legend(); side(); });
+
+/* ---------- legend, side panel ---------- */
+function legend() {
+  const ramp = `<span class="ramp">${YC.map(c => `<i class="sq" style="background:${c}"></i>`).join("")}</span>`;
+  const head = LY.col === "web" ? `<span>First recorded website: 1990 ${ramp} 2000</span><span><i class="sq" style="background:${YC[3]};opacity:.42"></i>dated before the country's own domain</span><span><i class="sq" style="background:transparent;border:2px solid var(--fg)"></i>in the pre-1995 list</span>`
+    : `<span>Country code domain created: <i class="sq" style="background:${PRE};margin-left:6px"></i>before 1990, 1990 ${ramp} 2000</span>`;
+  document.getElementById("legend").innerHTML = head + `<span><i class="sq" style="background:var(--unlit);border:1px solid var(--border)"></i>none recorded by ${S.y}</span>` +
+    (LY.list ? TYPES.map(([n, c]) => `<span><i style="background:${c}"></i>${esc(n)}</span>`).join("") : "") + (LY.wd ? `<span><i style="background:${isDark() ? "#C9CED6" : "#3B3F48"};width:7px;height:7px"></i>Wikidata website</span>` : "");
+}
+function side() {
+  const s = document.getElementById("side"), y = S.y;
+  if (S.sel && S.sel.iso && (S.sel.kind === "country" || S.sel.kind === "list" || S.sel.kind === "wd")) return countrySide(S.sel.iso);
+  const lit = Object.entries(FIRST).filter(([i, f]) => f[0] <= y), nw = lit.filter(([i, f]) => f[0] === y).sort((a, b) => cname(a[0]).localeCompare(cname(b[0])));
+  const tl = Object.values(TLD).filter(t => t[1] <= y).length;
+  const ly = LIST.filter(r => wyear(r) === y);
+  const wy = WD.filter(r => r.year === y);
+  let h = `<h4>By the end of ${y}</h4><div class="big">${lit.length} countr${lit.length === 1 ? "y" : "ies"}</div><p class="sub">with a website recorded in these sources; ${tl} with their own country code domain.</p>`;
+  h += `<h4>New in ${y}</h4>` + (nw.length ? `<ul>${nw.map(([i, f]) => `<li><span class="go" data-c="${i}">${esc(cname(i))}</span>${f[8] ? " ?" : ""} <small>${esc(f[1])}${f[2] === "list" ? ", in the list" : ""}</small></li>`).join("")}</ul>` : `<p class="sub">No new countries this year.</p>`);
+  if (ly.length) h += `<h4>In the pre-1995 list for ${y}</h4><ul>${ly.slice(0, 40).map(r => `<li><span class="go" data-n="${r.n}">${esc(r.name)}</span> <small>${esc(r.iso ? cname(r.iso) : "place not known")}</small></li>`).join("")}</ul>${ly.length > 40 ? `<p class="sub">and ${ly.length - 40} more: search above or see the table below.</p>` : ""}`;
+  h += `<h4>Wikidata websites founded in ${y}</h4><p class="sub">${fmt(wy.length)}${y < 1993 ? ", but dates before 1993 are mostly the founding of the organisation, so none are mapped" : ""}.</p>`;
+  s.innerHTML = h; wireSide(s);
+}
+function countrySide(i) {
+  const s = document.getElementById("side"), f = FIRST[i], t = TLD[i];
+  const ls = LIST.filter(r => r.iso === i), ws = WD.filter(r => r.iso === i), wsy = ws.filter(r => r.year <= S.y);
+  let h = `<button class="back">← back to ${S.y}</button><div class="big">${esc(cname(i))}</div>`;
+  h += `<h4>First recorded website</h4>` + (f ? `<p><b>${esc(f[1])}</b>, ${esc(f[5] || f[0])}<br><small>${f[2] === "list" ? "Wikipedia's pre-1995 list" : "Wikidata inception"}${f[7] > 1 ? `; ${f[7] - 1} more that year` : ""}${f[8] ? ". Dated before the country had its own domain: probably the founding of the organisation, not the site" : ""}. <a href="${esc(f[6])}" target="_blank" rel="noopener">Source</a></small></p>` : `<p class="sub">None in these sources by 2000.</p>`);
+  h += `<h4>Country code domain</h4>` + (t ? `<p>${esc(t[0])}, created ${esc(t[2].endsWith("-01-01") ? String(t[1]) : t[2])} <small>(Wikidata)</small></p>` : `<p class="sub">No date in Wikidata.</p>`);
+  if (ls.length) h += `<h4>In the pre-1995 list (${ls.length})</h4><ul>${ls.map(r => `<li><span class="go" data-n="${r.n}">${esc(r.name)}</span> <small>${r.year}</small></li>`).join("")}</ul>`;
+  h += `<h4>Wikidata websites, 1990 to ${S.y} (${wsy.length})</h4>` + (wsy.length ? `<ul>${wsy.slice(0, 30).map(r => `<li><span class="go" data-w="${r.i}">${esc(r.name)}</span> <small>${r.year}${r.lat == null ? ", not mapped" : ""}</small></li>`).join("")}</ul>${wsy.length > 30 ? `<p class="sub">and ${wsy.length - 30} more.</p>` : ""}` : `<p class="sub">None.</p>`);
+  s.innerHTML = h; s.querySelector(".back").onclick = unpick; wireSide(s);
+}
+function wireSide(s) {
+  s.querySelectorAll("[data-c]").forEach(g => g.onclick = () => pickCountry(g.dataset.c, { fly: true }));
+  s.querySelectorAll("[data-n]").forEach(g => g.onclick = () => pickList(+g.dataset.n, { fly: true }));
+  s.querySelectorAll("[data-w]").forEach(g => g.onclick = () => pickWd(+g.dataset.w, { fly: true }));
+}
+
+/* ---------- search ---------- */
+(function search() {
+  const q = document.getElementById("q"), sug = document.getElementById("sug"); let items = [], k = -1;
+  const nrm = s => s.normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  const IDX = [...Object.keys(CN).map(i => ({ t: "c", i, s: nrm(cname(i)), l: cname(i), d: FIRST[i] ? "country, first recorded " + FIRST[i][0] : "country" })),
+    ...LIST.map(r => ({ t: "l", n: r.n, s: nrm(r.name), l: r.name, d: "pre-1995 list, " + r.year })),
+    ...WD.map(r => ({ t: "w", i: r.i, s: nrm(r.name), l: r.name, d: "Wikidata, " + r.year + (r.iso ? ", " + cname(r.iso) : "") }))];
+  const go = it => { sug.style.display = "none"; q.value = it.l; stop(); if (it.t === "c") pickCountry(it.i, { fly: true }); else if (it.t === "l") pickList(it.n, { fly: true }); else pickWd(it.i, { fly: true }); };
+  q.addEventListener("input", () => { const v = nrm(q.value.trim()); k = -1; if (v.length < 2) { sug.style.display = "none"; return; }
+    const rank = it => it.s === v ? 0 : it.s.startsWith(v) ? 1 : 2;
+    items = IDX.filter(it => it.s.includes(v)).sort((a, b) => rank(a) - rank(b) || (a.t === "w") - (b.t === "w") || a.l.length - b.l.length).slice(0, 12);
+    sug.innerHTML = items.map((it, j) => `<li role="option" data-j="${j}">${esc(it.l)} <span>${esc(it.d)}</span></li>`).join(""); sug.style.display = items.length ? "block" : "none";
+    sug.querySelectorAll("li").forEach(li => li.onclick = () => go(items[+li.dataset.j])); });
+  q.addEventListener("keydown", e => { if (!items.length) return; if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); k = (k + (e.key === "ArrowDown" ? 1 : -1) + items.length) % items.length; sug.querySelectorAll("li").forEach((li, j) => li.setAttribute("aria-selected", j === k)); }
+    else if (e.key === "Enter") { e.preventDefault(); go(items[Math.max(0, k)]); } else if (e.key === "Escape") sug.style.display = "none"; });
+  document.addEventListener("click", e => { if (!e.target.closest(".searchbox")) sug.style.display = "none"; });
+})();
+
+/* ---------- charts ---------- */
+function hoverBars(svg, w, h, m, n, X, bw, html) {
+  const hitr = el("rect", { x: m.l, y: m.t, width: w - m.l - m.r, height: h - m.t - m.b, fill: "transparent" }, svg);
+  const mv = ev => { const r = svg.getBoundingClientRect(), x = (ev.clientX - r.left) * w / r.width; let k = -1; for (let j = 0; j < n; j++) if (Math.abs(x - X(j)) <= bw / 2 + 3) k = j; if (k < 0) return hideTip(); showTip(html(k), ev.clientX, ev.clientY); };
+  hitr.addEventListener("mousemove", mv); hitr.addEventListener("click", ev => { ev.stopPropagation(); mv(ev); }); hitr.addEventListener("mouseleave", hideTip);
+}
+function countChart() {
+  const P = [[1990.97, 1, "1", "December 1990: info.cern.ch, the first"], [1992.45, 10, "10", "June 1992: ten websites"], [1992.95, 55, "50 to 60", "end of 1992: fifty to sixty (van Rossum's crawl)"],
+             [1993.95, 623, "623", "end of 1993: 623 (Matthew Gray)"], [1994.45, 2738, "2,738", "mid 1994: 2,738 (Matthew Gray)"], [1994.97, 2278, "2,278?", "end of 1994: 2,278, says the introduction"],
+             [1994.99, 10000, "10,000+", "end of 1994: more than 10,000, says the 1994 section"], [1995.45, 23500, "23,500", "June 1995: some 23,500"]];
+  resp(document.getElementById("countChart"), (w, sm) => {
+    const h = sm ? 260 : 300, m = { l: 52, r: 16, t: 14, b: 28 }, svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": "Counts of websites in the world, 1990 to 1995, on a log scale" }, document.getElementById("countChart"));
+    const X = y => m.l + (w - m.l - m.r) * (y - 1990.8) / (1995.7 - 1990.8), Y = v => h - m.b - (h - m.t - m.b) * Math.log10(v) / Math.log10(40000);
+    [1, 10, 100, 1000, 10000].forEach(v => { el("line", { x1: m.l, x2: w - m.r, y1: Y(v), y2: Y(v), stroke: css("--rule") }, svg); lbl(svg, m.l - 6, Y(v) + 4, fmt(v), "lab s m", "end"); });
+    for (let y = 1991; y <= 1995; y++) lbl(svg, X(y), h - 9, y, "lab s m", "middle");
+    el("polyline", { points: P.filter(p => !p[2].includes("?") && !p[2].includes("+")).map(p => `${X(p[0])},${Y(p[1])}`).join(" "), fill: "none", stroke: css("--link"), "stroke-width": 2 }, svg);
+    P.forEach(p => { const c = el("circle", { cx: X(p[0]), cy: Y(p[1]), r: 5, fill: p[2].includes("?") || p[2].includes("+") ? css("--card") : css("--link"), stroke: css("--link"), "stroke-width": 2 }, svg);
+      const lab = lbl(svg, X(p[0]) + (p[2] === "2,278?" ? 8 : -8), Y(p[1]) + (p[2] === "2,278?" ? 14 : -9), p[2], "lab s b", p[2] === "2,278?" ? "start" : "end");
+      [c, lab].forEach(e => { e.style.cursor = "pointer"; e.addEventListener("mousemove", ev => showTip(esc(p[3]), ev.clientX, ev.clientY)); e.addEventListener("click", ev => { ev.stopPropagation(); showTip(esc(p[3]), ev.clientX, ev.clientY); }); e.addEventListener("mouseleave", hideTip); }); });
+  });
+}
+function listYearChart() {
+  const YT = R.list.year_type, ys = Object.keys(YT).map(Number);
+  resp(document.getElementById("listYearChart"), (w, sm) => {
+    const h = sm ? 300 : 340, m = { l: 36, r: 10, t: 16, b: 28 }, svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": "Stacked bars of the pre-1995 list by year and kind" }, document.getElementById("listYearChart"));
+    const mx = 80, bw = Math.min(110, (w - m.l - m.r) / ys.length * .62), X = j => m.l + (w - m.l - m.r) * (j + .5) / ys.length, Y = v => h - m.b - (h - m.t - m.b) * v / mx;
+    for (let v = 0; v <= mx; v += 20) { el("line", { x1: m.l, x2: w - m.r, y1: Y(v), y2: Y(v), stroke: css("--rule") }, svg); lbl(svg, m.l - 6, Y(v) + 4, v, "lab s m", "end"); }
+    ys.forEach((y, j) => { let b = 0; TNAME.forEach((t, k) => { const v = YT[y][t]; if (!v) return; el("rect", { x: X(j) - bw / 2, y: Y(b + v), width: bw, height: Y(b) - Y(b + v) - .5, fill: TC[k] }, svg); b += v; });
+      lbl(svg, X(j), Y(b) - 6, b, "lab b", "middle"); lbl(svg, X(j), h - 9, y, "lab s m", "middle"); });
+    hoverBars(svg, w, h, m, ys.length, X, bw, k => `<b>${ys[k]}</b>: ${R.list.by_year[ys[k]]} websites<br>` + TNAME.map((t, q) => YT[ys[k]][t] ? `<span style="color:${TC[q]}">■</span> ${esc(t)} ${YT[ys[k]][t]}` : "").filter(Boolean).join("<br>"));
+  });
+  document.getElementById("typeLegend").innerHTML = TYPES.map(([n, c]) => `<span><i class="sq" style="background:${c}"></i>${esc(n)}</span>`).join("");
+}
+const SC = () => [["live", "still online", css("--link")], ["gone", "closed or absorbed", css("--hot")], ["unstated", "not stated", isDark() ? "#5A606B" : "#C9C3B8"]];
+function typeChart() {
+  const TS = R.list.type_status;
+  resp(document.getElementById("typeChart"), (w, sm) => {
+    const rh = 30, m = { l: sm ? 150 : 250, r: 30, t: 8, b: 8 }, h = m.t + m.b + rh * TNAME.length, svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": "Bars of listed websites by kind and status" }, document.getElementById("typeChart"));
+    const mx = Math.max(...TNAME.map(t => R.list.types[t])), X = v => m.l + (w - m.l - m.r) * v / mx;
+    TNAME.forEach((t, k) => { const y = m.t + k * rh; let b = 0; lbl(svg, m.l - 8, y + rh / 2 + 4, sm ? t.replace(", magazines and broadcasters", " and media").replace(" and directories", "").replace(", causes and faith", " and causes") : t, "lab s", "end");
+      SC().forEach(([s, n, c]) => { const v = TS[t][s]; if (!v) return; const r = el("rect", { x: X(b), y: y + 5, width: X(b + v) - X(b) - 1, height: rh - 10, fill: c }, svg); b += v; });
+      lbl(svg, X(b) + 5, y + rh / 2 + 4, R.list.types[t], "lab s b");
+      const hr = el("rect", { x: 0, y, width: w, height: rh, fill: "transparent" }, svg);
+      const mv = ev => showTip(`<b>${esc(t)}</b>: ${R.list.types[t]}<br>${SC().map(([s, n]) => `${n}: ${TS[t][s]}`).join("<br>")}`, ev.clientX, ev.clientY);
+      hr.addEventListener("mousemove", mv); hr.addEventListener("click", ev => { ev.stopPropagation(); mv(ev); }); hr.addEventListener("mouseleave", hideTip); });
+  });
+  document.getElementById("statusLegend").innerHTML = SC().map(([s, n, c]) => `<span><i class="sq" style="background:${c}"></i>${esc(n)}</span>`).join("");
+}
+function listCountryChart() {
+  const C = [...R.list.countries, { iso: "", name: "Not known", n: R.list.no_country }];
+  resp(document.getElementById("listCountryChart"), (w, sm) => {
+    const rh = 24, m = { l: sm ? 120 : 150, r: 40, t: 6, b: 6 }, h = m.t + m.b + rh * C.length, svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": "Bars of listed websites by country" }, document.getElementById("listCountryChart"));
+    const mx = C[0].n, X = v => m.l + (w - m.l - m.r) * v / mx;
+    C.forEach((c, k) => { const y = m.t + k * rh, col = !c.iso ? (isDark() ? "#5A606B" : "#C9C3B8") : c.iso === "USA" ? RC[0] : CN[c.iso][4] === "Europe" ? RC[1] : RC[2];
+      lbl(svg, m.l - 8, y + rh / 2 + 4, c.name, "lab s", "end"); el("rect", { x: m.l, y: y + 4, width: Math.max(1, X(c.n) - m.l), height: rh - 8, fill: col }, svg); lbl(svg, X(c.n) + 5, y + rh / 2 + 4, c.n, "lab s b");
+      if (c.iso) { const hr = el("rect", { x: 0, y, width: w, height: rh, fill: "transparent" }, svg); hr.style.cursor = "pointer"; hr.addEventListener("click", ev => { ev.stopPropagation(); pickCountry(c.iso, { fly: true }); document.getElementById("atlas").scrollIntoView({ behavior: "smooth" }); }); } });
+  });
+}
+function spreadChart() {
+  const FY = R.firsts.cum_by_year, CY = R.cctld.cum, ys = []; for (let y = 1985; y <= 2000; y++) ys.push(y);
+  resp(document.getElementById("spreadChart"), (w, sm) => {
+    const h = sm ? 280 : 320, m = { l: 40, r: 22, t: 16, b: 28 }, svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": "Lines of countries with a recorded website and countries with a domain, 1985 to 2000" }, document.getElementById("spreadChart"));
+    const mx = 240, X = y => m.l + (w - m.l - m.r) * (y - 1985) / 15, Y = v => h - m.b - (h - m.t - m.b) * v / mx;
+    for (let v = 0; v <= mx; v += 40) { el("line", { x1: m.l, x2: w - m.r, y1: Y(v), y2: Y(v), stroke: css("--rule") }, svg); lbl(svg, m.l - 6, Y(v) + 4, v, "lab s m", "end"); }
+    for (let y = 1985; y <= 2000; y += sm ? 5 : 3) lbl(svg, X(y), h - 9, y, "lab s m", "middle");
+    el("polyline", { points: ys.map(y => `${X(y)},${Y(CY[y])}`).join(" "), fill: "none", stroke: css("--visited"), "stroke-width": 2.4, "stroke-dasharray": "6 4" }, svg);
+    el("polyline", { points: ys.filter(y => y >= 1990).map(y => `${X(y)},${Y(FY[y])}`).join(" "), fill: "none", stroke: css("--link"), "stroke-width": 3 }, svg);
+    lbl(svg, X(2000) - 4, Y(CY[2000]) - 8, `${CY[2000]} domains`, "lab s b", "end"); lbl(svg, X(2000) - 4, Y(FY[2000]) + 36, `${FY[2000]} with a website`, "lab s b", "end");
+    const g = el("line", { x1: 0, x2: 0, y1: m.t, y2: h - m.b, stroke: css("--fg"), opacity: 0 }, svg);
+    const hitr = el("rect", { x: m.l, y: m.t, width: w - m.l - m.r, height: h - m.t - m.b, fill: "transparent" }, svg);
+    const mv = ev => { const r = svg.getBoundingClientRect(), x = (ev.clientX - r.left) * w / r.width, y = Math.round(1985 + (x - m.l) / (w - m.l - m.r) * 15); if (y < 1985 || y > 2000) return;
+      g.setAttribute("x1", X(y)); g.setAttribute("x2", X(y)); g.setAttribute("opacity", .4);
+      showTip(`<b>${y}</b><br>${CY[y]} country code domains${y >= 1990 ? `<br>${FY[y]} countries with a recorded website` : ""}`, ev.clientX, ev.clientY); };
+    hitr.addEventListener("mousemove", mv); hitr.addEventListener("click", ev => { ev.stopPropagation(); mv(ev); }); hitr.addEventListener("mouseleave", () => { hideTip(); g.setAttribute("opacity", 0); });
+  });
+  document.getElementById("spreadLegend").innerHTML = `<span><i class="sq" style="background:var(--link)"></i>countries with a recorded website</span><span><i class="sq" style="background:var(--visited)"></i>countries with their own domain (dashed)</span>`;
+}
+function wdYearChart() {
+  const Yr = R.wd.years;
+  resp(document.getElementById("wdYearChart"), (w, sm) => {
+    const h = sm ? 300 : 340, m = { l: 40, r: 10, t: 16, b: 28 }, svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": "Stacked bars of Wikidata websites by year and region, 1990 to 2000" }, document.getElementById("wdYearChart"));
+    const mx = 450, n = Yr.length, bw = (w - m.l - m.r) / n * .7, X = j => m.l + (w - m.l - m.r) * (j + .5) / n, Y = v => h - m.b - (h - m.t - m.b) * v / mx;
+    for (let v = 0; v <= mx; v += 100) { el("line", { x1: m.l, x2: w - m.r, y1: Y(v), y2: Y(v), stroke: css("--rule") }, svg); lbl(svg, m.l - 6, Y(v) + 4, v, "lab s m", "end"); }
+    const cols = [...RC, isDark() ? "#5A606B" : "#C9C3B8"], keys = [...RNAME, "unknown"];
+    Yr.forEach((d, j) => { let b = 0; keys.forEach((k, q) => { const v = d[k]; if (!v) return; el("rect", { x: X(j) - bw / 2, y: Y(b + v), width: bw, height: Y(b) - Y(b + v) - .5, fill: cols[q], opacity: d.y < 1993 ? .55 : 1 }, svg); b += v; });
+      if (!sm || j % 2 === 0) lbl(svg, X(j), h - 9, d.y, "lab s m", "middle"); });
+    lbl(svg, X(1), Y(Yr[1].n) - 22, "1990 to 1992: mostly", "lab s m", "middle"); lbl(svg, X(1), Y(Yr[1].n) - 9, "founding dates", "lab s m", "middle");
+    hoverBars(svg, w, h, m, n, X, bw, k => { const d = Yr[k]; return `<b>${d.y}</b>: ${d.n} websites<br>` + keys.map((q, z) => `<span style="color:${cols[z]}">■</span> ${q === "unknown" ? "no country" : esc(q)} ${d[q]}`).join("<br>"); });
+  });
+  document.getElementById("regionLegend").innerHTML = REG.map(([n, c]) => `<span><i class="sq" style="background:${c}"></i>${esc(n)}</span>`).join("") + `<span><i class="sq" style="background:${isDark() ? "#5A606B" : "#C9C3B8"}"></i>no country recorded</span>`;
+}
+function shareChart() {
+  const Yr = R.wd.years, LY_ = R.list.year_type;
+  const lr = {}; Object.keys(LY_).forEach(y => { const rows = LIST.filter(r => r.year === +y && r.iso); const t = rows.length; lr[y] = RNAME.map(n => 100 * rows.filter(r => (n === "United States" ? r.iso === "USA" : n === "Europe" ? r.iso !== "USA" && CN[r.iso][4] === "Europe" : r.iso !== "USA" && CN[r.iso][4] !== "Europe")).length / t); lr[y].n = t; });
+  resp(document.getElementById("shareChart"), (w, sm) => {
+    const h = sm ? 280 : 320, m = { l: 40, r: 22, t: 14, b: 28 }, svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": "Share of websites by region per year, 1990 to 2000" }, document.getElementById("shareChart"));
+    const X = y => m.l + (w - m.l - m.r) * (y - 1990) / 10, Y = v => h - m.b - (h - m.t - m.b) * v / 100;
+    for (let v = 0; v <= 100; v += 25) { el("line", { x1: m.l, x2: w - m.r, y1: Y(v), y2: Y(v), stroke: css("--rule") }, svg); lbl(svg, m.l - 6, Y(v) + 4, v + "%", "lab s m", "end"); }
+    for (let y = 1990; y <= 2000; y += sm ? 2 : 1) lbl(svg, X(y), h - 9, y, "lab s m", "middle");
+    RNAME.forEach((n, k) => { el("polyline", { points: Yr.map(d => `${X(d.y)},${Y(d[n + "_pct"])}`).join(" "), fill: "none", stroke: RC[k], "stroke-width": 2.4 }, svg);
+      Object.keys(lr).forEach(y => el("rect", { x: X(+y) - 5, y: Y(lr[y][k]) - 5, width: 10, height: 10, fill: RC[k], stroke: css("--card"), "stroke-width": 1.2 }, svg)); });
+    const g = el("line", { x1: 0, x2: 0, y1: m.t, y2: h - m.b, stroke: css("--fg"), opacity: 0 }, svg);
+    const hitr = el("rect", { x: m.l, y: m.t, width: w - m.l - m.r, height: h - m.t - m.b, fill: "transparent" }, svg);
+    const mv = ev => { const r = svg.getBoundingClientRect(), x = (ev.clientX - r.left) * w / r.width, y = Math.round(1990 + (x - m.l) / (w - m.l - m.r) * 10); const d = Yr.find(q => q.y === y); if (!d) return;
+      g.setAttribute("x1", X(y)); g.setAttribute("x2", X(y)); g.setAttribute("opacity", .4);
+      showTip(`<b>${y}</b>, Wikidata (${d.known} with a country)<br>` + RNAME.map((n, k) => `<span style="color:${RC[k]}">■</span> ${esc(n)} ${Math.round(d[n + "_pct"])}%`).join("<br>") + (lr[y] ? `<br><b>The list</b> (${lr[y].n} with a country)<br>` + RNAME.map((n, k) => `<span style="color:${RC[k]}">■</span> ${esc(n)} ${Math.round(lr[y][k])}%`).join("<br>") : ""), ev.clientX, ev.clientY); };
+    hitr.addEventListener("mousemove", mv); hitr.addEventListener("click", ev => { ev.stopPropagation(); mv(ev); }); hitr.addEventListener("mouseleave", () => { hideTip(); g.setAttribute("opacity", 0); });
+  });
+  document.getElementById("shareLegend").innerHTML = REG.map(([n, c]) => `<span><i class="sq" style="background:${c}"></i>${esc(n)}</span>`).join("") + `<span>lines: Wikidata · squares: the list</span>`;
+}
+function firstTable() {
+  const t = document.getElementById("firstTable"), rows = R.firsts.rows;
+  t.innerHTML = `<thead><tr><th>Country</th><th class="r">Year</th><th>Earliest recorded website</th><th>Source</th></tr></thead><tbody>` +
+    rows.map(r => `<tr data-k="${r.iso}"><td>${esc(r.country)}</td><td class="r">${r.y}${r.doubt ? "?" : ""}</td><td>${esc(r.name)}${r.same_year > 1 ? ` <small>+${r.same_year - 1} that year</small>` : ""}</td><td><small>${r.src === "list" ? "pre-1995 list" : "Wikidata"}</small></td></tr>`).join("") + "</tbody>";
+  t.querySelectorAll("tr[data-k]").forEach(tr => tr.onclick = () => { pickCountry(tr.dataset.k, { fly: true }); document.getElementById("atlas").scrollIntoView({ behavior: "smooth" }); });
+}
+function listTable() {
+  const t = document.getElementById("listTable");
+  t.innerHTML = `<thead><tr><th>Website</th><th class="r">Year</th><th>Country</th><th>Kind</th><th>Today</th></tr></thead><tbody>` +
+    LIST.map(r => `<tr data-k="${r.n}"><td><a href="https://en.wikipedia.org/wiki/List_of_websites_founded_before_1995#${esc(r.hid)}" target="_blank" rel="noopener">${esc(r.name)}</a>${r.when ? ` <small>${esc(r.when)}</small>` : ""}</td><td class="r">${r.year}</td><td>${r.iso ? esc(cname(r.iso)) : "<small>not known</small>"}</td><td><small>${esc(TNAME[r.type])}</small></td><td><small>${r.status === "live" ? "online" : r.status === "gone" ? "closed" : "not stated"}</small></td></tr>`).join("") + "</tbody>";
+  t.querySelectorAll("tr[data-k]").forEach(tr => tr.onclick = e => { if (e.target.closest("a")) return; pickList(+tr.dataset.k, { fly: true }); document.getElementById("atlas").scrollIntoView({ behavior: "smooth" }); });
+}
+function charts() { countChart(); listYearChart(); typeChart(); listCountryChart(); spreadChart(); wdYearChart(); shareChart(); firstTable(); listTable(); }
+
+/* ---------- start ---------- */
+document.getElementById("theme").onclick = () => { const r = document.documentElement; r.dataset.theme = isDark() ? "light" : "dark"; retheme(); legend(); redraws.forEach(f => f()); };
+charts(); setYear(Y1); legend(); side(); initMap();
+</script>
+/*FULLSCREEN*/
+</body>
+</html>

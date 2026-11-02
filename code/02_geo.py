@@ -1,0 +1,38 @@
+"""Geography: a light world outline file for the page and figures (Natural Earth 1:50m, simplified), country names,
+label positions, continents and populations, and city names for map labels. Reads Natural Earth only."""
+from shapely.geometry import shape, mapping
+from common import *
+
+
+def rnd(c, k=2):
+    if isinstance(c, (list, tuple)) and c and isinstance(c[0], (int, float)):
+        return [round(c[0], k), round(c[1], k)]
+    return [rnd(x, k) for x in c]
+
+
+W50 = jload(f"{GEO}/ne_50m_admin_0_countries.geojson")
+feats, meta = [], {}
+for f in W50["features"]:
+    p = f["properties"]; iso = NE_FIX.get(iso_of(p), iso_of(p))
+    gs = shape(f["geometry"]).simplify(0.04, preserve_topology=True)
+    if gs.is_empty:
+        continue
+    gm = mapping(gs)
+    feats.append({"type": "Feature", "properties": {"iso": iso}, "geometry": {"type": gm["type"], "coordinates": rnd(gm["coordinates"])}})
+    if iso not in meta:
+        nm = (p.get("NAME_EN") or p["NAME"]).replace("People's Republic of China", "China").replace("United States of America", "United States")
+        meta[iso] = {"name": nm, "lx": round(p["LABEL_X"], 2), "ly": round(p["LABEL_Y"], 2), "pop": float(p.get("POP_EST") or 0), "cont": p["CONTINENT"]}
+meta.get("CYP", {}).update(name="Cyprus")
+meta.get("CZE", {}).update(name="Czech Republic")
+jsave({"type": "FeatureCollection", "features": feats}, f"{DATA}/world.json")
+jsave(meta, f"{DATA}/countries.json")
+
+P = jload(f"{GEO}/ne_10m_populated_places_simple.geojson")
+cities = []
+for f in P["features"]:
+    p = f["properties"]; pop = p.get("pop_max") or 0
+    if pop >= 300000 or p.get("adm0cap") == 1:
+        cities.append({"name": re.sub(r"\s+", " ", p["name"]), "lat": round(p["latitude"], 3), "lon": round(p["longitude"], 3), "pop": int(pop)})
+cities.sort(key=lambda c: -c["pop"])
+jsave(cities, f"{DATA}/cities.json")
+print("countries", len(meta), "cities", len(cities), "world", os.path.getsize(f"{DATA}/world.json") // 1024, "KB")

@@ -1,0 +1,152 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Pagella}
+\newfontfamily\headfont{Inter}[UprightFont=*-ExtraBold,BoldFont=*-ExtraBold,Extension=.otf,Path=/usr/share/fonts/opentype/inter/]
+\usepackage[a4paper,margin=2.3cm]{geometry}
+\usepackage{graphicx,booktabs,float,caption,array,xcolor,longtable}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage[round]{natbib}
+\usepackage{setspace}
+\setstretch{1.05}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\titleformat{\section}{\headfont\Large}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\headfont\large}{\thesubsection}{0.8em}{}
+\captionsetup{font=small,labelfont=bf}
+\urlstyle{same}
+\hypersetup{pdftitle={The First Websites},pdfauthor={Tristan Hotham}}
+
+\begin{document}
+\begin{center}
+{\Large\bfseries The First Websites\par}
+\vspace{0.4em}
+{\large How the World Wide Web spread around the world, 1990 to 2000:\\evidence from Wikipedia's list of early websites, Wikidata and country code domains\par}
+\vspace{1.2em}
+{\large Tristan Hotham\par}
+\vspace{0.3em}
+{\small Independent researcher\\
+ORCID: 0000-0003-4931-9349\\
+DOI: \href{https://doi.org/{{meta.doi}}}{https://doi.org/{{meta.doi}}}\par}
+\vspace{0.8em}
+2026
+\end{center}
+
+\begin{quote}
+\small
+\begin{center}\textbf{Abstract}\end{center}
+I trace the spread of the World Wide Web from the first website, published at CERN in December 1990, to the end of 2000, using three open sources: English Wikipedia's list of websites founded before 1995, which I code entry by entry; the founding dates ("inception") of {{wd.items|int}} websites in Wikidata; and Wikidata's creation dates for country code top-level domains. The list holds {{list.n|int}} distinct websites: {{list.by_year.1991|int}} from 1991, {{list.by_year.1992|int}} from 1992, {{list.by_year.1993|int}} from 1993 and {{list.by_year.1994|int}} from 1994. In 1991 and 1992, {{list.sci_uni_9192|int}} of {{list.n_9192|int}} were laboratories, universities or libraries; in 1994, {{list.sci_uni_94|int}} of {{list.n_94|int}}. Of the {{list.known|int}} that can be placed, {{list.us_pct_known|f1}}\% were in the United States, {{list.europe_pct_known|f1}}\% in Europe and {{list.rest_pct_known|f1}}\% elsewhere. The list's own text says {{list.live|int}} are still online and {{list.gone|int}} have closed; for {{list.unstated|int}} it says nothing. Wikidata gives a very different geography: of its {{wd.country|int}} websites founded from 1990 to 2000 with a known country, {{wd.us_pct|f1}}\% are American and {{wd.europe_pct|f1}}\% European, but only {{wd.country_pct|f1}}\% of its {{wd.n|int}} websites of the period have a country at all, and its 1990 to 1992 dates ({{wd.early|int}} websites, against fifty to sixty in the world at the end of 1992) are mostly the founding of the organisation behind a site. Combining the list with Wikidata dates from 1993 on, {{firsts.cum_by_year.1992|int}} countries had a recorded website by the end of 1992, {{firsts.cum_by_year.1994|int}} by 1994 and {{firsts.n|int}} by 2000; {{cctld.by2000|int}} countries had their own internet domain by then. These are the earliest websites recorded in these sources, not the true firsts.
+
+\textbf{Keywords:} World Wide Web; internet history; early websites; diffusion; country code top-level domains; Wikipedia; Wikidata; open data; mapping
+\end{quote}
+
+\section{Introduction}
+The World Wide Web is one of the fastest spreading technologies in history. Its first website, info.cern.ch, went up at CERN on 20 December 1990 \citep{wikihist}; by the end of 1993 there were 623 websites and by June 1995 some 23,500 \citep{wikilist}. Histories of the web usually tell this story through its technical milestones: the first server and browser, the release of the code into the public domain on 30 April 1993, the Mosaic browser. Less attention has been paid to its geography. Where did the first websites appear, and how quickly did the web reach each country?
+
+No complete record of the early web exists. This paper uses three open sources that each capture part of it, and is explicit about what each can and cannot show. English Wikipedia's ``List of websites founded before 1995'' \citep{wikilist} describes {{list.n|int}} notable early websites, chosen because they survive or mattered. Wikidata, the structured database behind Wikipedia, records a founding date for thousands of websites \citep{wikidata}. And Wikidata records when each country's internet domain (.ch, .jp, .br) was created. The paper accompanies an interactive map (\url{{{meta.page}}}).
+
+\section{Data}
+\textbf{The pre-1995 list.} The article (revision {{source.revids.List of websites founded before 1995|raw}}) is prose, not a table: a section for each year from 1991 to 1994, each with a short paragraph per website, {{list.rows|int}} entries in all. Its introduction gives contemporary counts of all websites: ten in June 1992, fifty to sixty near the end of 1992 (from a crawl by Guido van Rossum), 623 at the end of 1993 and 2,738 in mid 1994 (both from Matthew Gray), and some 23,500 in June 1995. For the end of 1994 it gives two incompatible figures, 2,278 in the introduction and more than 10,000 in the 1994 section (Figure~\ref{fig:counts}). It also states that of {{web_counts.pre1995|int}} websites established before 1995, those listed are the ones that survive or made a significant contribution, so the list covers about {{web_counts.list_share_pct|f1}}\% of them.
+
+\textbf{Wikidata websites.} All items that are instances of website (Q35127) or of its subclasses with an inception up to 2000, with country (P17), headquarters location (P159) and its coordinates, official website (P856) and English Wikipedia article: {{wd.rows|int}} rows for {{wd.items|int}} items.
+
+\textbf{Country code domains.} Wikidata items for country code top-level domains (Q42032) with an inception date and country, and the ``Year registered'' column of Wikipedia's article on country code top-level domains \citep{wikicc}, which gives a year (or ``1990+'') for {{cctld.wiki_with_year|int}} of {{cctld.wiki_rows|int}} two-letter codes.
+
+\textbf{Context and geography.} Wikipedia's ``History of the World Wide Web'' \citep{wikihist} supplies the dates of the first website, the first servers outside CERN and the public domain release. Country outlines and continents are from Natural Earth \citep{naturalearth}.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_counts.png}
+\caption{Counts of all the world's websites quoted in Wikipedia's pre-1995 list, log scale. Open circles: the two conflicting figures for the end of 1994.}\label{fig:counts}\end{figure}
+
+\section{Methods}
+\subsection{Coding the list}
+I split the list on its headings into {{list.rows|int}} entries. Chabad.org appears under both 1993 and 1994 and is counted once, in 1993, leaving {{list.n|int}}. The year of an entry is the year section it sits in. Two exceptions are noted but not changed: the entry for Wired, under 1993, states that the site launched in October 1994; and the list dates CERN's site to 1991 while ``History of the World Wide Web'' dates info.cern.ch to 20 December 1990, which I use for the map and the country table.
+
+For each entry I record a country and, where possible, a place. Where the paragraph names a place or a host institution (a university, a laboratory, a city) I use it ({{list.basis.text|int}} entries); otherwise I use the well-known home of the organisation behind the site ({{list.basis.org|int}}); for {{list.basis.country|int}} only the country is known; {{list.basis.none|int}} give no indication and have no country. Each placed point is checked to fall inside its country's Natural Earth outline. I code each website into one of eight kinds (Table~\ref{tab:types}). Status is taken only from the text: an entry is ``still online'' or ``closed'' only where its paragraph says so, and the phrase that says so is checked by the code; otherwise it is ``not stated''.
+
+\subsection{Wikidata websites}
+Items are collapsed to one row each, keeping the earliest inception. An item's country is the Natural Earth country containing its headquarters coordinates where these exist (in {{wd.country_hq|int}} cases this overrides or replaces Wikidata's own country, for example a company domiciled in the Cayman Islands but headquartered in China), otherwise Wikidata's country. Historical states map to their main successor (the Kingdom of the Netherlands to the Netherlands, Serbia and Montenegro to Serbia). {{wd.newsgroups|Word}} Usenet newsgroups typed as websites are dropped.
+
+Inception is the weakest field. The first website went up in December 1990, so an inception before 1990 cannot be a web launch: {{wd.pre1990|int}} items ({{wd.pre1990_pct|f1}}\%) fall there, such as the Buenos Aires Herald, founded as a newspaper in {{wd.bah_year|raw}}. I treat these as the founding of the parent organisation and leave them out, keeping {{wd.n|int}} websites with an inception from 1990 to 2000. Even this floor is generous: Wikidata dates {{wd.early|int}} websites to 1990 to 1992, more than twice the fifty to sixty that existed at the end of 1992, so most of those dates are also organisations' founding years. Regions are the United States, Europe (Natural Earth's continent, including Russia) and the rest of the world.
+
+\subsection{The earliest recorded website in each country}
+For each country I take the earliest of (a) the list's entries, with CERN dated 1990, and (b) Wikidata websites with an inception from {{defs.strict_floor|raw}} on. The stricter floor for this one measure removes the 1990 to 1992 founding dates that would otherwise light up {{firsts.lax_1990_1992|int}} countries before the web had reached them. Within a year, list entries and dated months come before year-only Wikidata dates. I flag, without removing, Wikidata firsts dated before the country had its own internet domain (counting predecessor domains: .su for former Soviet states, .yu for Serbia and Montenegro, .cs for the Czech Republic and Slovakia, .an for Curaçao): {{firsts.n_doubt|int}} countries ({{firsts.doubt_names|raw}}).
+
+\subsection{Domains}
+Two-letter ccTLDs are matched to countries by their code (.uk for the United Kingdom); Wikidata inception is taken as the creation of the domain. {{cctld.matched_dated|int}} matched domains have a date. Where Wikipedia's table also gives a year, the two agree for {{cctld.agree|int}} of {{cctld.both|int}}; the disagreements are {{defs.cc_disagree|raw}}.
+
+{{TABLE_TYPES}}
+
+\section{Results}
+\subsection{The list: from laboratories to everybody}
+The list grows from {{list.by_year.1991|int}} websites in 1991 to {{list.by_year.1992|int}} in 1992, {{list.by_year.1993|int}} in 1993 and {{list.by_year.1994|int}} in 1994 (Figure~\ref{fig:years}). Its earliest entries are almost all scientific: of the {{list.n_9192|int}} from 1991 and 1992, {{list.sci_uni_9192|int}} ({{list.sci_uni_9192_pct|f1}}\%) belonged to laboratories, universities or libraries, among them CERN, SLAC (the first web server outside Europe, 12 December 1991), Fermilab, Nikhef (the third website in the world, February 1992, by the list's count), University College Cork (the first in Ireland), the Hebrew University of Jerusalem (the first written right to left) and KEK (the first web page in Japan, September 1992). By 1994 that share had fallen to {{list.sci_uni_94_pct|f1}}\% ({{list.sci_uni_94|int}} of {{list.n_94|int}}). Companies, newspapers and broadcasters, government bodies, search engines and above all personal and fan sites ({{list.fun_94|int}} in 1994 alone; {{list.types.Fans, hobbies and fun|int}} in the whole list, the largest group) took over.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_list_years.png}
+\caption{Websites in Wikipedia's pre-1995 list, by year section and kind (my coding).}\label{fig:years}\end{figure}
+
+The text says {{list.live|int}} websites ({{list.live_pct|f1}}\%) are still online, at the same or a new address, and {{list.gone|int}} ({{list.gone_pct|f1}}\%) have closed or been absorbed; for {{list.unstated|int}} ({{list.unstated_pct|f1}}\%) it is silent (Figure~\ref{fig:status}). Both counts are therefore floors. I did not check the websites themselves.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_status.png}
+\caption{Websites in the pre-1995 list by kind and by what the list's text says about them today.}\label{fig:status}\end{figure}
+
+\subsection{Where the listed websites were}
+{{list.n_countries|int}} countries appear in the list (Figure~\ref{fig:countries}). The United States has {{list.us|int}} websites, {{list.us_pct_known|f1}}\% of the {{list.known|int}} that can be placed, and holds a majority of each year's placed websites from 1992 on ({{list.us_share_by_year.1994|f1}}\% in 1994). Europe has {{list.europe|int}} ({{list.europe_pct_known|f1}}\%), led by the United Kingdom ({{list.gbr|int}}) and Ireland ({{list.irl|int}}). The remaining {{list.rest|int}} are in Canada, Japan, Israel and Mexico. Table~\ref{tab:list} in the appendix lists every entry with its coding.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_countries.png}
+\caption{Websites in the pre-1995 list by country.}\label{fig:countries}\end{figure}
+
+\subsection{Wikidata: the decade}
+Wikidata's websites founded from 1990 to 2000 rise from {{wd.y1994|int}} in 1994 to {{wd.y1995|int}} in 1995 and peak at {{wd.peak_n|int}} in {{wd.peak_year|raw}}; {{wd.since1995_pct|f1}}\% date from 1995 or later (Figure~\ref{fig:wd}). Coverage is thin: {{wd.country_pct|f1}}\% have a country, {{wd.coords_pct|f1}}\% headquarters coordinates, {{wd.en_pct|f1}}\% an English Wikipedia article and {{wd.url_pct|f1}}\% an official address. The websites with a country are spread over {{wd.n_countries|int}} countries; the United States has {{wd.us|int}}, then Russia ({{wd.top.1.n|int}}), the United Kingdom ({{wd.top.2.n|int}}), Germany ({{wd.top.3.n|int}}) and France ({{wd.top.4.n|int}}).
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_wd_years.png}
+\caption{Wikidata websites by year of inception and region, 1990 to 2000. Faded: 1990 to 1992, years whose dates are mostly organisations' founding.}\label{fig:wd}\end{figure}
+
+The geography is the reverse of the list's (Figure~\ref{fig:share}). Of Wikidata's websites with a country, {{wd.us_pct|f1}}\% are American, {{wd.europe_pct|f1}}\% European and {{wd.rest_pct|f1}}\% elsewhere; the American share is {{wd.united_1990_1994_pct|f1}}\% for 1990 to 1994 ({{wd.known_1990_1994|int}} websites) and {{wd.united_1995_2000_pct|f1}}\% for 1995 to 2000 ({{wd.known_1995_2000|int}}), and swings between {{wd.us_min_pct|f1}}\% ({{wd.us_min_year|raw}}) and {{wd.us_max_pct|f1}}\% ({{wd.us_max_year|raw}}) in single years. Adding the {{wd.url_extra|int}} websites without a country whose address ends in a country code lowers it to {{wd.plus_us_pct|f1}}\%. Because American websites mostly used .com, websites with no recorded country are probably more often American than the rest, so Wikidata's figure is likely an underestimate; the list, written in English and from memory, is likely an overestimate. The data cannot say where between them the truth lies.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_share.png}
+\caption{Share of each year's websites with a known country by region: Wikidata (lines) and the pre-1995 list (squares).}\label{fig:share}\end{figure}
+
+\subsection{Country by country}
+Figure~\ref{fig:map} maps the earliest recorded website in each country and Table~\ref{tab:firsts} lists them. Switzerland comes first (1990) and the United States second (SLAC, December 1991). Five more join in 1992, all from the list: the Netherlands, Ireland, Israel, Japan and France. {{firsts.new_by_year.1993|int}} countries are added in 1993, the year the web became free to use, but {{firsts.new_by_year.1993|int}} is also where Wikidata's dates begin to count, so part of that jump is the source changing. By the end of 1994 {{firsts.cum_by_year.1994|int}} countries have a recorded website and by 2000 {{firsts.n|int}}, home to {{firsts.pop_covered_pct|f1}}\% of the present world population; {{firsts.no_record|int}} of Natural Earth's {{source.n_ne|int}} countries and territories have none. Africa is least covered: {{firsts.africa_n|int}} of its {{firsts.africa_total|int}} countries have a record, and its earliest unflagged one is {{firsts.by_cont_clean.Africa.country|raw}} in {{firsts.by_cont_clean.Africa.y|raw}}.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_map.png}
+\caption{Year of the earliest website recorded for each country in the pre-1995 list or (from 1993) Wikidata. Outlined: countries in the list. Faded: Wikidata dates before the country had its own domain. Dots: listed websites, coloured by kind.}\label{fig:map}\end{figure}
+
+Domains came first (Figure~\ref{fig:spread}). {{cctld.by1989|int}} matched country domains existed by the end of 1989, {{cctld.by1994|int}} by 1994 and {{cctld.by2000|int}} by 2000, with the most new ones ({{cctld.peak_n|int}}) in {{cctld.peak_year|raw}}. For the {{cctld.gap_list_n|int}} countries whose first record comes from the list, the website followed the domain by a median of {{cctld.gap_list_median|f1}} years (range {{cctld.gap_list_min|int}} to {{cctld.gap_list_max|int}}; Luxembourg's CORDIS, at www.cordis.lu in November 1994, predates Wikidata's 1995 date for .lu, which suggests that date is too late). Across all {{cctld.gap_n|int}} countries the median gap is {{cctld.gap_median|f1}} years.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_spread.png}
+\caption{Countries with a recorded website and countries with their own country code domain, cumulative.}\label{fig:spread}\end{figure}
+
+\section{Limitations}
+First, none of the sources is a census: the list is a curated {{web_counts.list_share_pct|f1}}\% of pre-1995 websites, and Wikidata holds what its editors have added. Second, Wikidata's inception often records the founding of an organisation rather than of its website; the floors at 1990 and, for country firsts, 1993, and the domain flag reduce but cannot remove this. Third, the coding of the list (country, place, kind) is mine, and for {{list.basis.org|int}} entries the place comes from general knowledge of the organisation rather than the text. Fourth, the list's status reflects what its editors wrote, not a check of the websites. Fifth, ``first recorded'' is first in these sources; countries surely had websites earlier than the ones recorded here. Sixth, Wikidata's domain dates are themselves imperfect, as the Luxembourg case and three disagreements with Wikipedia show.
+
+\section{Conclusion}
+The web began as a physicists' tool in Switzerland and California and within four years had become a medium for companies, newspapers, governments and fans, overwhelmingly American in the English-language memory of it. By 2000 at least {{firsts.n|int}} countries had a website on record. The sources that let us see this are uneven: Wikipedia's list remembers the American web; Wikidata remembers much more of Europe's and the rest of the world's, but with dates that often belong to the organisations, not the sites. Read together, and with their limits in view, they show how quickly the web spread, and how much of its early history has not been written down.
+
+\section*{Data and code availability}
+The interactive map is at \url{{{meta.page}}}. Data and code are at \url{{{meta.repo}}} and archived with this paper at \url{https://doi.org/{{meta.doi}}}. Derived data are released under CC BY 4.0 and code under the MIT licence. Wikipedia content is CC BY-SA 4.0; Wikidata is CC0.
+
+\section*{AI statement}
+I wrote the text, with drafting and editing assistance from Claude (Anthropic), which also helped prepare the analysis code. I reviewed and checked all text and results.
+
+\begin{thebibliography}{9}
+\bibitem[Natural Earth(2026)]{naturalearth} Natural Earth (2026) Admin 0 countries and populated places, 1:50m and 1:10m. Public domain. \url{https://www.naturalearthdata.com/}
+\bibitem[Wikidata(2026)]{wikidata} Wikidata contributors (2026) Websites (Q35127 and subclasses) and country code top-level domains (Q42032), queried through QLever. CC0. \url{https://www.wikidata.org/}
+\bibitem[Wikipedia(2026a)]{wikilist} Wikipedia contributors (2026) List of websites founded before 1995 (revision {{source.revids.List of websites founded before 1995|raw}}). CC BY-SA 4.0. \url{https://en.wikipedia.org/wiki/List_of_websites_founded_before_1995}
+\bibitem[Wikipedia(2026b)]{wikihist} Wikipedia contributors (2026) History of the World Wide Web (revision {{source.revids.History of the World Wide Web|raw}}). CC BY-SA 4.0. \url{https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web}
+\bibitem[Wikipedia(2026c)]{wikicc} Wikipedia contributors (2026) Country code top-level domain (revision {{source.revids.Country code top-level domain|raw}}). CC BY-SA 4.0. \url{https://en.wikipedia.org/wiki/Country_code_top-level_domain}
+\bibitem[Wikipedia(2026d)]{wikitld} Wikipedia contributors (2026) List of Internet top-level domains (revision {{source.revids.List of Internet top-level domains|raw}}). CC BY-SA 4.0. \url{https://en.wikipedia.org/wiki/List_of_Internet_top-level_domains}
+\end{thebibliography}
+
+\clearpage
+\appendix
+\section{The earliest recorded website in each country}
+{{TABLE_FIRSTS}}
+
+\section{The pre-1995 list as coded}
+{{TABLE_LIST}}
+\end{document}

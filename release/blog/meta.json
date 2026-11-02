@@ -1,0 +1,17 @@
+{
+  "title": "The first websites: how the web spread around the world",
+  "slug": "first-websites",
+  "excerpt": "From one server at CERN in December 1990 to 83 countries with a recorded website by 2000. I coded Wikipedia's list of 119 websites founded before 1995 and added 2,208 more from Wikidata: the web began with physicists and was soon overwhelmingly American, at least in the English-language memory of it.",
+  "seo_description": "How the World Wide Web spread from CERN in 1990 to 83 countries by 2000: the first websites, mapped from Wikipedia and Wikidata.",
+  "tags": [
+    "internet history",
+    "World Wide Web",
+    "maps",
+    "data visualisation",
+    "CERN",
+    "Wikipedia",
+    "Wikidata",
+    "1990s"
+  ],
+  "header_alt": "Title card reading 'The first websites' in black, blue and purple under a mock browser address bar showing http://info.cern.ch/, beside a world map with countries coloured from dark blue (1990) to pale gold (2000) by the year of their earliest recorded website, the United States and western Europe darkest, much of Africa grey. Text: from one server at CERN to 83 countries; 70% of the early sites in Wikipedia's list with a known country were American."
+}

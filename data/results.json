@@ -1,0 +1,2625 @@
+{
+ "list": {
+  "n": 119,
+  "rows": 120,
+  "by_year": {
+   "1991": 3,
+   "1992": 14,
+   "1993": 28,
+   "1994": 74
+  },
+  "types": {
+   "Science and research": 15,
+   "Universities and libraries": 8,
+   "Companies and shops": 20,
+   "News, magazines and broadcasters": 16,
+   "Government and politics": 10,
+   "Search engines and directories": 10,
+   "Culture, causes and faith": 14,
+   "Fans, hobbies and fun": 26
+  },
+  "types_pct": {
+   "Science and research": 12.6,
+   "Universities and libraries": 6.7,
+   "Companies and shops": 16.8,
+   "News, magazines and broadcasters": 13.4,
+   "Government and politics": 8.4,
+   "Search engines and directories": 8.4,
+   "Culture, causes and faith": 11.8,
+   "Fans, hobbies and fun": 21.8
+  },
+  "year_type": {
+   "1991": {
+    "Science and research": 2,
+    "Universities and libraries": 0,
+    "Companies and shops": 0,
+    "News, magazines and broadcasters": 0,
+    "Government and politics": 0,
+    "Search engines and directories": 1,
+    "Culture, causes and faith": 0,
+    "Fans, hobbies and fun": 0
+   },
+   "1992": {
+    "Science and research": 5,
+    "Universities and libraries": 5,
+    "Companies and shops": 2,
+    "News, magazines and broadcasters": 0,
+    "Government and politics": 0,
+    "Search engines and directories": 0,
+    "Culture, causes and faith": 1,
+    "Fans, hobbies and fun": 1
+   },
+   "1993": {
+    "Science and research": 6,
+    "Universities and libraries": 2,
+    "Companies and shops": 4,
+    "News, magazines and broadcasters": 5,
+    "Government and politics": 1,
+    "Search engines and directories": 2,
+    "Culture, causes and faith": 3,
+    "Fans, hobbies and fun": 5
+   },
+   "1994": {
+    "Science and research": 2,
+    "Universities and libraries": 1,
+    "Companies and shops": 14,
+    "News, magazines and broadcasters": 11,
+    "Government and politics": 9,
+    "Search engines and directories": 7,
+    "Culture, causes and faith": 10,
+    "Fans, hobbies and fun": 20
+   }
+  },
+  "n_countries": 14,
+  "no_country": 13,
+  "known": 106,
+  "countries": [
+   {
+    "iso": "USA",
+    "name": "United States",
+    "n": 74
+   },
+   {
+    "iso": "GBR",
+    "name": "United Kingdom",
+    "n": 11
+   },
+   {
+    "iso": "IRL",
+    "name": "Ireland",
+    "n": 4
+   },
+   {
+    "iso": "CHE",
+    "name": "Switzerland",
+    "n": 3
+   },
+   {
+    "iso": "CAN",
+    "name": "Canada",
+    "n": 3
+   },
+   {
+    "iso": "FRA",
+    "name": "France",
+    "n": 2
+   },
+   {
+    "iso": "JPN",
+    "name": "Japan",
+    "n": 2
+   },
+   {
+    "iso": "NLD",
+    "name": "Netherlands",
+    "n": 1
+   },
+   {
+    "iso": "ISR",
+    "name": "Israel",
+    "n": 1
+   },
+   {
+    "iso": "NOR",
+    "name": "Norway",
+    "n": 1
+   },
+   {
+    "iso": "BEL",
+    "name": "Belgium",
+    "n": 1
+   },
+   {
+    "iso": "LUX",
+    "name": "Luxembourg",
+    "n": 1
+   },
+   {
+    "iso": "CZE",
+    "name": "Czech Republic",
+    "n": 1
+   },
+   {
+    "iso": "MEX",
+    "name": "Mexico",
+    "n": 1
+   }
+  ],
+  "us": 74,
+  "us_pct_known": 69.8,
+  "us_pct": 62.2,
+  "europe": 25,
+  "europe_pct_known": 23.6,
+  "rest": 7,
+  "rest_pct_known": 6.6,
+  "gbr": 11,
+  "irl": 4,
+  "che": 3,
+  "can": 3,
+  "live": 43,
+  "gone": 14,
+  "unstated": 62,
+  "live_pct": 36.1,
+  "gone_pct": 11.8,
+  "unstated_pct": 52.1,
+  "plotted": 91,
+  "basis": {
+   "org": 49,
+   "text": 42,
+   "country": 15,
+   "none": 13
+  },
+  "type_status": {
+   "Science and research": {
+    "live": 5,
+    "gone": 1,
+    "unstated": 9
+   },
+   "Universities and libraries": {
+    "live": 2,
+    "gone": 0,
+    "unstated": 6
+   },
+   "Companies and shops": {
+    "live": 5,
+    "gone": 3,
+    "unstated": 12
+   },
+   "News, magazines and broadcasters": {
+    "live": 8,
+    "gone": 2,
+    "unstated": 6
+   },
+   "Government and politics": {
+    "live": 5,
+    "gone": 0,
+    "unstated": 5
+   },
+   "Search engines and directories": {
+    "live": 2,
+    "gone": 3,
+    "unstated": 5
+   },
+   "Culture, causes and faith": {
+    "live": 5,
+    "gone": 0,
+    "unstated": 9
+   },
+   "Fans, hobbies and fun": {
+    "live": 11,
+    "gone": 5,
+    "unstated": 10
+   }
+  },
+  "sci_uni_9192": 12,
+  "n_9192": 17,
+  "com_9394": 18,
+  "n_9394": 102,
+  "sci_uni_94": 3,
+  "n_94": 74,
+  "us_1994": 49,
+  "us_1994_pct": 66.2,
+  "us_9192": 9,
+  "fun_94": 20,
+  "us_share_by_year": {
+   "1991": 33.3,
+   "1992": 61.5,
+   "1993": 59.3,
+   "1994": 77.8
+  },
+  "top_type": "Fans, hobbies and fun",
+  "top_type_n": 26,
+  "sci_uni_9192_pct": 70.6,
+  "sci_uni_94_pct": 4.1,
+  "countries_list": "United States, United Kingdom, Ireland, Switzerland, Canada, France, Japan, Netherlands, Israel, Norway, Belgium, Luxembourg, Czech Republic, Mexico"
+ },
+ "entries": {
+  "cern": {
+   "title": "CERN",
+   "when": "20 December 1990",
+   "year": 1991
+  },
+  "vlib": {
+   "title": "World Wide Web Virtual Library",
+   "when": "",
+   "year": 1991
+  },
+  "slac": {
+   "title": "Stanford Linear Accelerator Center",
+   "when": "12 December 1991",
+   "year": 1991
+  },
+  "nikhef": {
+   "title": "Nikhef",
+   "when": "February 1992",
+   "year": 1992
+  },
+  "fnal": {
+   "title": "FNAL",
+   "when": "June 1992",
+   "year": 1992
+  },
+  "curia": {
+   "title": "CURIA",
+   "when": "April 1992",
+   "year": 1992
+  },
+  "huji": {
+   "title": "HUJI",
+   "when": "April 1992",
+   "year": 1992
+  },
+  "kek": {
+   "title": "KEK",
+   "when": "September 1992",
+   "year": 1992
+  },
+  "cybergrass": {
+   "title": "Cybergrass",
+   "when": "9 September 1992",
+   "year": 1992
+  },
+  "tech": {
+   "title": "The Tech",
+   "when": "May 1993",
+   "year": 1993
+  },
+  "expasy": {
+   "title": "ExPASy",
+   "when": "August 1993",
+   "year": 1993
+  },
+  "jumpstation": {
+   "title": "JumpStation",
+   "when": "12 December 1993",
+   "year": 1993
+  },
+  "coffee": {
+   "title": "Trojan Room coffee pot",
+   "when": "November 1993",
+   "year": 1993
+  },
+  "imdb": {
+   "title": "IMDb",
+   "when": "late 1993",
+   "year": 1993
+  },
+  "wired": {
+   "title": "Wired.com",
+   "when": "October 1994",
+   "year": 1993
+  },
+  "cordis": {
+   "title": "CORDIS",
+   "when": "November 1994",
+   "year": 1994
+  },
+  "radio_prague": {
+   "title": "Radio Prague",
+   "when": "",
+   "year": 1994
+  },
+  "ezln": {
+   "title": "Zapatista National Liberation Army (EZLN)",
+   "when": "",
+   "year": 1994
+  },
+  "fogcam": {
+   "title": "FogCam!",
+   "when": "July 1994",
+   "year": 1994
+  },
+  "whitehouse": {
+   "title": "Whitehouse.gov",
+   "when": "20 October 1994",
+   "year": 1994
+  },
+  "yahoo": {
+   "title": "Yahoo!",
+   "when": "",
+   "year": 1994
+  },
+  "bbc": {
+   "title": "BBC Online",
+   "when": "April 1994",
+   "year": 1994
+  },
+  "amnesty": {
+   "title": "Amnesty International Canada",
+   "when": "",
+   "year": 1994
+  },
+  "barney": {
+   "title": "The Barney Fun Page",
+   "when": "October 1994",
+   "year": 1994
+  },
+  "irish_times": {
+   "title": "The Irish Times",
+   "when": "",
+   "year": 1994
+  },
+  "cdnair": {
+   "title": "CDNAir.ca",
+   "when": "",
+   "year": 1994
+  },
+  "joachim": {
+   "title": "Joachim Jarre Society",
+   "when": "November 1993",
+   "year": 1993
+  },
+  "principia": {
+   "title": "Principia Cybernetica",
+   "when": "July 1993",
+   "year": 1993
+  },
+  "in2p3": {
+   "title": "IN2P3",
+   "when": "",
+   "year": 1992
+  },
+  "ntt": {
+   "title": "Nippon Telegraph and Telephone",
+   "when": "December 1993",
+   "year": 1993
+  }
+ },
+ "web_counts": {
+  "jun1992": 10,
+  "end1992": "fifty to sixty",
+  "end1993": 623,
+  "mid1994": 2738,
+  "end1994_intro": 2278,
+  "end1994_sec": "more than 10,000",
+  "jun1995": 23500,
+  "pre1995": 2879,
+  "list_share_pct": 4.1
+ },
+ "wd": {
+  "rows": 4603,
+  "items": 3127,
+  "pre1990": 915,
+  "pre1990_pct": 29.3,
+  "newsgroups": 4,
+  "n": 2208,
+  "years": [
+   {
+    "y": 1990,
+    "n": 51,
+    "known": 34,
+    "United States": 6,
+    "Europe": 16,
+    "Rest of the world": 12,
+    "unknown": 17,
+    "United States_pct": 17.6,
+    "Europe_pct": 47.1,
+    "Rest of the world_pct": 35.3,
+    "plus_known": 38,
+    "United States_plus_pct": 15.8,
+    "Europe_plus_pct": 47.4,
+    "Rest of the world_plus_pct": 36.8
+   },
+   {
+    "y": 1991,
+    "n": 45,
+    "known": 38,
+    "United States": 5,
+    "Europe": 22,
+    "Rest of the world": 11,
+    "unknown": 7,
+    "United States_pct": 13.2,
+    "Europe_pct": 57.9,
+    "Rest of the world_pct": 28.9,
+    "plus_known": 39,
+    "United States_plus_pct": 12.8,
+    "Europe_plus_pct": 59.0,
+    "Rest of the world_plus_pct": 28.2
+   },
+   {
+    "y": 1992,
+    "n": 43,
+    "known": 27,
+    "United States": 12,
+    "Europe": 11,
+    "Rest of the world": 4,
+    "unknown": 16,
+    "United States_pct": 44.4,
+    "Europe_pct": 40.7,
+    "Rest of the world_pct": 14.8,
+    "plus_known": 30,
+    "United States_plus_pct": 40.0,
+    "Europe_plus_pct": 43.3,
+    "Rest of the world_plus_pct": 16.7
+   },
+   {
+    "y": 1993,
+    "n": 60,
+    "known": 39,
+    "United States": 10,
+    "Europe": 13,
+    "Rest of the world": 16,
+    "unknown": 21,
+    "United States_pct": 25.6,
+    "Europe_pct": 33.3,
+    "Rest of the world_pct": 41.0,
+    "plus_known": 42,
+    "United States_plus_pct": 23.8,
+    "Europe_plus_pct": 38.1,
+    "Rest of the world_plus_pct": 38.1
+   },
+   {
+    "y": 1994,
+    "n": 104,
+    "known": 57,
+    "United States": 20,
+    "Europe": 28,
+    "Rest of the world": 9,
+    "unknown": 47,
+    "United States_pct": 35.1,
+    "Europe_pct": 49.1,
+    "Rest of the world_pct": 15.8,
+    "plus_known": 68,
+    "United States_plus_pct": 29.4,
+    "Europe_plus_pct": 51.5,
+    "Rest of the world_plus_pct": 19.1
+   },
+   {
+    "y": 1995,
+    "n": 191,
+    "known": 115,
+    "United States": 53,
+    "Europe": 40,
+    "Rest of the world": 22,
+    "unknown": 76,
+    "United States_pct": 46.1,
+    "Europe_pct": 34.8,
+    "Rest of the world_pct": 19.1,
+    "plus_known": 123,
+    "United States_plus_pct": 43.1,
+    "Europe_plus_pct": 37.4,
+    "Rest of the world_plus_pct": 19.5
+   },
+   {
+    "y": 1996,
+    "n": 249,
+    "known": 141,
+    "United States": 51,
+    "Europe": 69,
+    "Rest of the world": 21,
+    "unknown": 108,
+    "United States_pct": 36.2,
+    "Europe_pct": 48.9,
+    "Rest of the world_pct": 14.9,
+    "plus_known": 159,
+    "United States_plus_pct": 32.1,
+    "Europe_plus_pct": 50.3,
+    "Rest of the world_plus_pct": 17.6
+   },
+   {
+    "y": 1997,
+    "n": 268,
+    "known": 144,
+    "United States": 40,
+    "Europe": 64,
+    "Rest of the world": 40,
+    "unknown": 124,
+    "United States_pct": 27.8,
+    "Europe_pct": 44.4,
+    "Rest of the world_pct": 27.8,
+    "plus_known": 158,
+    "United States_plus_pct": 25.3,
+    "Europe_plus_pct": 48.1,
+    "Rest of the world_plus_pct": 26.6
+   },
+   {
+    "y": 1998,
+    "n": 322,
+    "known": 177,
+    "United States": 51,
+    "Europe": 92,
+    "Rest of the world": 34,
+    "unknown": 145,
+    "United States_pct": 28.8,
+    "Europe_pct": 52.0,
+    "Rest of the world_pct": 19.2,
+    "plus_known": 196,
+    "United States_plus_pct": 26.0,
+    "Europe_plus_pct": 54.1,
+    "Rest of the world_plus_pct": 19.9
+   },
+   {
+    "y": 1999,
+    "n": 438,
+    "known": 272,
+    "United States": 75,
+    "Europe": 122,
+    "Rest of the world": 75,
+    "unknown": 166,
+    "United States_pct": 27.6,
+    "Europe_pct": 44.9,
+    "Rest of the world_pct": 27.6,
+    "plus_known": 291,
+    "United States_plus_pct": 25.8,
+    "Europe_plus_pct": 47.8,
+    "Rest of the world_plus_pct": 26.5
+   },
+   {
+    "y": 2000,
+    "n": 437,
+    "known": 254,
+    "United States": 47,
+    "Europe": 139,
+    "Rest of the world": 68,
+    "unknown": 183,
+    "United States_pct": 18.5,
+    "Europe_pct": 54.7,
+    "Rest of the world_pct": 26.8,
+    "plus_known": 281,
+    "United States_plus_pct": 16.7,
+    "Europe_plus_pct": 56.9,
+    "Rest of the world_plus_pct": 26.3
+   }
+  ],
+  "country": 1298,
+  "country_pct": 58.8,
+  "country_p17": 1184,
+  "country_hq": 114,
+  "coords": 564,
+  "coords_pct": 25.5,
+  "en": 1305,
+  "en_pct": 59.1,
+  "url": 2038,
+  "url_pct": 92.3,
+  "n_countries": 85,
+  "us": 370,
+  "us_pct": 28.5,
+  "europe": 616,
+  "europe_pct": 47.5,
+  "rest": 312,
+  "rest_pct": 24.0,
+  "top": [
+   {
+    "iso": "USA",
+    "name": "United States",
+    "n": 370
+   },
+   {
+    "iso": "RUS",
+    "name": "Russia",
+    "n": 94
+   },
+   {
+    "iso": "GBR",
+    "name": "United Kingdom",
+    "n": 87
+   },
+   {
+    "iso": "DEU",
+    "name": "Germany",
+    "n": 79
+   },
+   {
+    "iso": "FRA",
+    "name": "France",
+    "n": 56
+   },
+   {
+    "iso": "CAN",
+    "name": "Canada",
+    "n": 38
+   },
+   {
+    "iso": "ITA",
+    "name": "Italy",
+    "n": 34
+   },
+   {
+    "iso": "CHN",
+    "name": "China",
+    "n": 31
+   },
+   {
+    "iso": "ESP",
+    "name": "Spain",
+    "n": 31
+   },
+   {
+    "iso": "JPN",
+    "name": "Japan",
+    "n": 28
+   },
+   {
+    "iso": "ISR",
+    "name": "Israel",
+    "n": 26
+   },
+   {
+    "iso": "NOR",
+    "name": "Norway",
+    "n": 24
+   },
+   {
+    "iso": "NLD",
+    "name": "Netherlands",
+    "n": 24
+   },
+   {
+    "iso": "AUS",
+    "name": "Australia",
+    "n": 22
+   },
+   {
+    "iso": "SWE",
+    "name": "Sweden",
+    "n": 21
+   }
+  ],
+  "early": 139,
+  "y1990": 51,
+  "y1994": 104,
+  "y1995": 191,
+  "y1999": 438,
+  "y2000": 437,
+  "peak_year": 1999,
+  "peak_n": 438,
+  "since1995": 1905,
+  "since1995_pct": 86.3,
+  "bah_year": 1876,
+  "oldest_label": "Food Info",
+  "oldest_year": 26,
+  "url_extra": 127,
+  "plus_known": 1425,
+  "no_country": 910,
+  "us_min_pct": 13.2,
+  "us_max_pct": 46.1,
+  "us_min_year": 1991,
+  "us_max_year": 1995,
+  "plus_us_pct": 26.0,
+  "plus_europe_pct": 50.0,
+  "plus_rest_pct": 24.1,
+  "united_1990_1994_pct": 27.2,
+  "europe_1990_1994_pct": 46.2,
+  "rest_1990_1994_pct": 26.7,
+  "known_1990_1994": 195,
+  "united_1995_2000_pct": 28.7,
+  "europe_1995_2000_pct": 47.7,
+  "rest_1995_2000_pct": 23.6,
+  "known_1995_2000": 1103
+ },
+ "firsts": {
+  "n": 83,
+  "n_1994": 35,
+  "n_1992": 7,
+  "n_list": 12,
+  "n_wd": 71,
+  "new_by_year": {
+   "1990": 1,
+   "1991": 1,
+   "1992": 5,
+   "1993": 20,
+   "1994": 8,
+   "1995": 11,
+   "1996": 9,
+   "1997": 9,
+   "1998": 5,
+   "1999": 10,
+   "2000": 4
+  },
+  "cum_by_year": {
+   "1990": 1,
+   "1991": 2,
+   "1992": 7,
+   "1993": 27,
+   "1994": 35,
+   "1995": 46,
+   "1996": 55,
+   "1997": 64,
+   "1998": 69,
+   "1999": 79,
+   "2000": 83
+  },
+  "lax_1990_1992": 35,
+  "lax_n": 85,
+  "no_record": 155,
+  "rows": [
+   {
+    "iso": "CHE",
+    "country": "Switzerland",
+    "y": 1990,
+    "name": "CERN",
+    "when": "20 December 1990",
+    "src": "list",
+    "url": "",
+    "wiki": "CERN",
+    "ref": "https://en.wikipedia.org/wiki/List_of_websites_founded_before_1995#CERN",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "USA",
+    "country": "United States",
+    "y": 1991,
+    "name": "Stanford Linear Accelerator Center",
+    "when": "12 December 1991",
+    "src": "list",
+    "url": "",
+    "wiki": "Stanford_Linear_Accelerator_Center",
+    "ref": "https://en.wikipedia.org/wiki/List_of_websites_founded_before_1995#Stanford_Linear_Accelerator_Center",
+    "same_year": 1,
+    "cont": "North America",
+    "doubt": 0
+   },
+   {
+    "iso": "NLD",
+    "country": "Netherlands",
+    "y": 1992,
+    "name": "Nikhef",
+    "when": "February 1992",
+    "src": "list",
+    "url": "",
+    "wiki": "Nikhef",
+    "ref": "https://en.wikipedia.org/wiki/List_of_websites_founded_before_1995#Nikhef",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "IRL",
+    "country": "Ireland",
+    "y": 1992,
+    "name": "CURIA",
+    "when": "April 1992",
+    "src": "list",
+    "url": "",
+    "wiki": "",
+    "ref": "https://en.wikipedia.org/wiki/List_of_websites_founded_before_1995#CURIA",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "ISR",
+    "country": "Israel",
+    "y": 1992,
+    "name": "HUJI",
+    "when": "April 1992",
+    "src": "list",
+    "url": "",
+    "wiki": "Hebrew_University_of_Jerusalem",
+    "ref": "https://en.wikipedia.org/wiki/List_of_websites_founded_before_1995#HUJI",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "JPN",
+    "country": "Japan",
+    "y": 1992,
+    "name": "KEK",
+    "when": "September 1992",
+    "src": "list",
+    "url": "",
+    "wiki": "KEK",
+    "ref": "https://en.wikipedia.org/wiki/List_of_websites_founded_before_1995#KEK",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "FRA",
+    "country": "France",
+    "y": 1992,
+    "name": "IN2P3",
+    "when": "",
+    "src": "list",
+    "url": "",
+    "wiki": "IN2P3",
+    "ref": "https://en.wikipedia.org/wiki/List_of_websites_founded_before_1995#IN2P3",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "UKR",
+    "country": "Ukraine",
+    "y": 1993,
+    "name": "Ukrainian Independent Information Agency",
+    "when": "1993-03-01",
+    "src": "wikidata",
+    "url": "https://www.unian.ua/",
+    "wiki": "Ukrainian_Independent_Information_Agency",
+    "ref": "https://www.wikidata.org/wiki/Q2095222",
+    "same_year": 2,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "ARG",
+    "country": "Argentina",
+    "y": 1993,
+    "name": "A24",
+    "when": "1993-04-15",
+    "src": "wikidata",
+    "url": "https://www.a24.com/",
+    "wiki": "Am%C3%A9rica_24",
+    "ref": "https://www.wikidata.org/wiki/Q4749624",
+    "same_year": 1,
+    "cont": "South America",
+    "doubt": 0
+   },
+   {
+    "iso": "DEU",
+    "country": "Germany",
+    "y": 1993,
+    "name": "The Patches Scrolls",
+    "when": "1993-04-01",
+    "src": "wikidata",
+    "url": "https://www.patches-scrolls.com/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q83196523",
+    "same_year": 4,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "RUS",
+    "country": "Russia",
+    "y": 1993,
+    "name": "Novaya Gazeta",
+    "when": "1993-04-01",
+    "src": "wikidata",
+    "url": "https://novayagazeta.ru/",
+    "wiki": "Novaya_Gazeta",
+    "ref": "https://www.wikidata.org/wiki/Q170135",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "KOR",
+    "country": "South Korea",
+    "y": 1993,
+    "name": "Maeil Labor News",
+    "when": "1993-05-18",
+    "src": "wikidata",
+    "url": "https://www.labortoday.co.kr/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q65332376",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "BEL",
+    "country": "Belgium",
+    "y": 1993,
+    "name": "Principia Cybernetica",
+    "when": "July 1993",
+    "src": "list",
+    "url": "",
+    "wiki": "Principia_Cybernetica",
+    "ref": "https://en.wikipedia.org/wiki/List_of_websites_founded_before_1995#Principia_Cybernetica",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "MRT",
+    "country": "Mauritania",
+    "y": 1993,
+    "name": "Le Calame",
+    "when": "1993-07-14",
+    "src": "wikidata",
+    "url": "https://www.lecalame.info/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q137116168",
+    "same_year": 1,
+    "cont": "Africa",
+    "doubt": 1
+   },
+   {
+    "iso": "MEX",
+    "country": "Mexico",
+    "y": 1993,
+    "name": "Siglo de Durango",
+    "when": "1993-07-08",
+    "src": "wikidata",
+    "url": "http://www.elsiglodedurango.com.mx/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q65032582",
+    "same_year": 2,
+    "cont": "North America",
+    "doubt": 0
+   },
+   {
+    "iso": "ESP",
+    "country": "Spain",
+    "y": 1993,
+    "name": "Cajadecarton.es",
+    "when": "1993-08-23",
+    "src": "wikidata",
+    "url": "https://www.cajadecarton.es/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q141654970",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "CAN",
+    "country": "Canada",
+    "y": 1993,
+    "name": "Flags of the World",
+    "when": "1993-09-01",
+    "src": "wikidata",
+    "url": "https://www.fotw.info/flags/index.html",
+    "wiki": "Flags_of_the_World_(website)",
+    "ref": "https://www.wikidata.org/wiki/Q844523",
+    "same_year": 5,
+    "cont": "North America",
+    "doubt": 0
+   },
+   {
+    "iso": "FIN",
+    "country": "Finland",
+    "y": 1993,
+    "name": "Kokkolan Halpa-Halli Oy",
+    "when": "1993-10-27",
+    "src": "wikidata",
+    "url": "https://www.halpahalli.fi/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q11861256",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "TWN",
+    "country": "Taiwan",
+    "y": 1993,
+    "name": "104 Job Bank",
+    "when": "1993-10-30",
+    "src": "wikidata",
+    "url": "http://www.104.com.tw/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q16078682",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "NOR",
+    "country": "Norway",
+    "y": 1993,
+    "name": "Joachim Jarre Society",
+    "when": "November 1993",
+    "src": "list",
+    "url": "",
+    "wiki": "",
+    "ref": "https://en.wikipedia.org/wiki/List_of_websites_founded_before_1995#Joachim_Jarre_Society",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "GBR",
+    "country": "United Kingdom",
+    "y": 1993,
+    "name": "Trojan Room coffee pot",
+    "when": "November 1993",
+    "src": "list",
+    "url": "",
+    "wiki": "Trojan_Room_coffee_pot",
+    "ref": "https://en.wikipedia.org/wiki/List_of_websites_founded_before_1995#Trojan_Room_coffee_pot",
+    "same_year": 5,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "AUS",
+    "country": "Australia",
+    "y": 1993,
+    "name": "Doongal Aboriginal Art",
+    "when": "1993",
+    "src": "wikidata",
+    "url": "https://www.doongal.com.au/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q124801966",
+    "same_year": 1,
+    "cont": "Oceania",
+    "doubt": 0
+   },
+   {
+    "iso": "KHM",
+    "country": "Cambodia",
+    "y": 1993,
+    "name": "The Cambodia Daily",
+    "when": "1993",
+    "src": "wikidata",
+    "url": "https://www.cambodiadaily.com/",
+    "wiki": "The_Cambodia_Daily",
+    "ref": "https://www.wikidata.org/wiki/Q3057820",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 1
+   },
+   {
+    "iso": "ITA",
+    "country": "Italy",
+    "y": 1993,
+    "name": "Patrizia Pepe",
+    "when": "1993",
+    "src": "wikidata",
+    "url": "http://www.patriziapepe.com",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q3897831",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "KAZ",
+    "country": "Kazakhstan",
+    "y": 1993,
+    "name": "ALAU.KZ",
+    "when": "1993",
+    "src": "wikidata",
+    "url": "https://alau.kz/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q136468944",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "LTU",
+    "country": "Lithuania",
+    "y": 1993,
+    "name": "Mano namai",
+    "when": "1993",
+    "src": "wikidata",
+    "url": "https://manonamai.lt/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q12664330",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "TUR",
+    "country": "Turkey",
+    "y": 1993,
+    "name": "TGRT Haber",
+    "when": "1993",
+    "src": "wikidata",
+    "url": "https://www.tgrthaber.com/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q123908496",
+    "same_year": 2,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "GRC",
+    "country": "Greece",
+    "y": 1994,
+    "name": "Sportime",
+    "when": "1994-02-21",
+    "src": "wikidata",
+    "url": "",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q106585845",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "COL",
+    "country": "Colombia",
+    "y": 1994,
+    "name": "La Nación",
+    "when": "1994-06-15",
+    "src": "wikidata",
+    "url": "https://www.lanacion.com.co/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q130266979",
+    "same_year": 1,
+    "cont": "South America",
+    "doubt": 0
+   },
+   {
+    "iso": "LUX",
+    "country": "Luxembourg",
+    "y": 1994,
+    "name": "CORDIS",
+    "when": "November 1994",
+    "src": "list",
+    "url": "www.cordis.lu",
+    "wiki": "CORDIS",
+    "ref": "https://en.wikipedia.org/wiki/List_of_websites_founded_before_1995#CORDIS",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "CZE",
+    "country": "Czech Republic",
+    "y": 1994,
+    "name": "Radio Prague",
+    "when": "",
+    "src": "list",
+    "url": "english.radio.cz",
+    "wiki": "Radio_Prague",
+    "ref": "https://en.wikipedia.org/wiki/List_of_websites_founded_before_1995#Radio_Prague",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "IND",
+    "country": "India",
+    "y": 1994,
+    "name": "India TV",
+    "when": "1994",
+    "src": "wikidata",
+    "url": "https://www.indiatvnews.com/",
+    "wiki": "India_TV",
+    "ref": "https://www.wikidata.org/wiki/Q6019415",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "PSE",
+    "country": "Palestine",
+    "y": 1994,
+    "name": "Snunit",
+    "when": "1994",
+    "src": "wikidata",
+    "url": "http://www.snunit.k12.il/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q6600465",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 1
+   },
+   {
+    "iso": "PRT",
+    "country": "Portugal",
+    "y": 1994,
+    "name": "Motociclismo",
+    "when": "1994",
+    "src": "wikidata",
+    "url": "https://motociclismo.pt/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q141407030",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "SWE",
+    "country": "Sweden",
+    "y": 1994,
+    "name": "Yelah",
+    "when": "1994",
+    "src": "wikidata",
+    "url": "http://www.yelah.net/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q10723484",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "AUT",
+    "country": "Austria",
+    "y": 1995,
+    "name": "derStandard.at",
+    "when": "1995-02-02",
+    "src": "wikidata",
+    "url": "http://derstandard.at/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q1192004",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "HKG",
+    "country": "Hong Kong",
+    "y": 1995,
+    "name": "Weather Underground of Hong Kong",
+    "when": "1995-06-01",
+    "src": "wikidata",
+    "url": "https://www.weather.org.hk",
+    "wiki": "Weather_Underground_of_Hong_Kong",
+    "ref": "https://www.wikidata.org/wiki/Q15913189",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "DNK",
+    "country": "Denmark",
+    "y": 1995,
+    "name": "Scope",
+    "when": "1995-07-01",
+    "src": "wikidata",
+    "url": "http://www.scope.dk/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q12334769",
+    "same_year": 3,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "CHN",
+    "country": "China",
+    "y": 1995,
+    "name": "Dahe Daily",
+    "when": "1995-08-01",
+    "src": "wikidata",
+    "url": "https://www.dahebao.cn/",
+    "wiki": "Dahe_Daily",
+    "ref": "https://www.wikidata.org/wiki/Q5208788",
+    "same_year": 2,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "BIH",
+    "country": "Bosnia and Herzegovina",
+    "y": 1995,
+    "name": "Commission to Preserve National Monuments of Bosnia and Herzegovina",
+    "when": "1995-12-14",
+    "src": "wikidata",
+    "url": "http://www.kons.gov.ba/",
+    "wiki": "Commission_to_Preserve_National_Monuments_of_Bosnia_and_Herzegovina",
+    "ref": "https://www.wikidata.org/wiki/Q27958099",
+    "same_year": 2,
+    "cont": "Europe",
+    "doubt": 1
+   },
+   {
+    "iso": "BRA",
+    "country": "Brazil",
+    "y": 1995,
+    "name": "Shoptime",
+    "when": "1995",
+    "src": "wikidata",
+    "url": "",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q7501260",
+    "same_year": 1,
+    "cont": "South America",
+    "doubt": 0
+   },
+   {
+    "iso": "IDN",
+    "country": "Indonesia",
+    "y": 1995,
+    "name": "Tempo.co",
+    "when": "1995",
+    "src": "wikidata",
+    "url": "",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q25453720",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "KGZ",
+    "country": "Kyrgyzstan",
+    "y": 1995,
+    "name": "Neman-Pharm",
+    "when": "1995",
+    "src": "wikidata",
+    "url": "https://neman.kg",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q136466384",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "POL",
+    "country": "Poland",
+    "y": 1995,
+    "name": "Wirtualna Polska",
+    "when": "1995",
+    "src": "wikidata",
+    "url": "https://www.wp.pl",
+    "wiki": "Wirtualna_Polska",
+    "ref": "https://www.wikidata.org/wiki/Q380042",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "RWA",
+    "country": "Rwanda",
+    "y": 1995,
+    "name": "The New Times",
+    "when": "1995",
+    "src": "wikidata",
+    "url": "http://www.newtimes.co.rw",
+    "wiki": "The_New_Times_(Rwanda)",
+    "ref": "https://www.wikidata.org/wiki/Q3057375",
+    "same_year": 1,
+    "cont": "Africa",
+    "doubt": 1
+   },
+   {
+    "iso": "ZAF",
+    "country": "South Africa",
+    "y": 1995,
+    "name": "Design Indaba",
+    "when": "1995",
+    "src": "wikidata",
+    "url": "https://designindaba.com/",
+    "wiki": "Design_Indaba",
+    "ref": "https://www.wikidata.org/wiki/Q20981506",
+    "same_year": 1,
+    "cont": "Africa",
+    "doubt": 0
+   },
+   {
+    "iso": "ROU",
+    "country": "Romania",
+    "y": 1996,
+    "name": "cIMeC.Ro",
+    "when": "1996-05-01",
+    "src": "wikidata",
+    "url": "http://cimec.ro",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q106806915",
+    "same_year": 2,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "NZL",
+    "country": "New Zealand",
+    "y": 1996,
+    "name": "Jasons Travel Media",
+    "when": "1996-06-01",
+    "src": "wikidata",
+    "url": "http://www.jasons.co.nz",
+    "wiki": "Jasons_Travel_Media",
+    "ref": "https://www.wikidata.org/wiki/Q6163864",
+    "same_year": 2,
+    "cont": "Oceania",
+    "doubt": 0
+   },
+   {
+    "iso": "SRB",
+    "country": "Serbia",
+    "y": 1996,
+    "name": "Blic",
+    "when": "1996-09-16",
+    "src": "wikidata",
+    "url": "http://www.blic.rs/",
+    "wiki": "Blic",
+    "ref": "https://www.wikidata.org/wiki/Q883987",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "EST",
+    "country": "Estonia",
+    "y": 1996,
+    "name": "NETI",
+    "when": "1996-10-01",
+    "src": "wikidata",
+    "url": "https://www.neti.ee/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q20529588",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "QAT",
+    "country": "Qatar",
+    "y": 1996,
+    "name": "Al Jazeera",
+    "when": "1996-11-01",
+    "src": "wikidata",
+    "url": "https://www.aljazeera.net/",
+    "wiki": "Al_Jazeera_Arabic",
+    "ref": "https://www.wikidata.org/wiki/Q13477",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "CHL",
+    "country": "Chile",
+    "y": 1996,
+    "name": "Gob.cl",
+    "when": "1996",
+    "src": "wikidata",
+    "url": "https://www.gob.cl",
+    "wiki": "Gob.cl",
+    "ref": "https://www.wikidata.org/wiki/Q132982151",
+    "same_year": 1,
+    "cont": "South America",
+    "doubt": 0
+   },
+   {
+    "iso": "CYP",
+    "country": "Cyprus",
+    "y": 1996,
+    "name": "Robtex",
+    "when": "1996",
+    "src": "wikidata",
+    "url": "https://robtex.com/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q137170485",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "HUN",
+    "country": "Hungary",
+    "y": 1996,
+    "name": "Web Gallery of Art",
+    "when": "1996",
+    "src": "wikidata",
+    "url": "https://www.wga.hu/",
+    "wiki": "Web_Gallery_of_Art",
+    "ref": "https://www.wikidata.org/wiki/Q1464063",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "PER",
+    "country": "Peru",
+    "y": 1996,
+    "name": "Ciberayllu",
+    "when": "1996",
+    "src": "wikidata",
+    "url": "http://www.ciberayllu.org/",
+    "wiki": "Ciberayllu",
+    "ref": "https://www.wikidata.org/wiki/Q118849539",
+    "same_year": 1,
+    "cont": "South America",
+    "doubt": 0
+   },
+   {
+    "iso": "CYM",
+    "country": "Cayman Islands",
+    "y": 1997,
+    "name": "NetEase",
+    "when": "1997-06-01",
+    "src": "wikidata",
+    "url": "https://www.163.com/",
+    "wiki": "NetEase",
+    "ref": "https://www.wikidata.org/wiki/Q196259",
+    "same_year": 1,
+    "cont": "North America",
+    "doubt": 0
+   },
+   {
+    "iso": "HRV",
+    "country": "Croatia",
+    "y": 1997,
+    "name": "Monitor.hr",
+    "when": "1997",
+    "src": "wikidata",
+    "url": "http://haw.nsk.hr/publikacija/12/internet-monitor",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q117744180",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "CUW",
+    "country": "Curaçao",
+    "y": 1997,
+    "name": "GoldenPalace.com",
+    "when": "1997",
+    "src": "wikidata",
+    "url": "http://goldenpalace.com/",
+    "wiki": "GoldenPalace.com",
+    "ref": "https://www.wikidata.org/wiki/Q5579091",
+    "same_year": 1,
+    "cont": "North America",
+    "doubt": 0
+   },
+   {
+    "iso": "GIN",
+    "country": "Guinea",
+    "y": 1997,
+    "name": "Guinéenews",
+    "when": "1997",
+    "src": "wikidata",
+    "url": "https://guineenews.org/",
+    "wiki": "Guin%C3%A9enews",
+    "ref": "https://www.wikidata.org/wiki/Q5616624",
+    "same_year": 1,
+    "cont": "Africa",
+    "doubt": 0
+   },
+   {
+    "iso": "ISL",
+    "country": "Iceland",
+    "y": 1997,
+    "name": "Kvikmyndir",
+    "when": "1997",
+    "src": "wikidata",
+    "url": "https://kvikmyndir.is/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q16419444",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "PRI",
+    "country": "Puerto Rico",
+    "y": 1997,
+    "name": "Primera Hora",
+    "when": "1997",
+    "src": "wikidata",
+    "url": "https://primerahora.com",
+    "wiki": "Primera_Hora_(Puerto_Rico)",
+    "ref": "https://www.wikidata.org/wiki/Q4609158",
+    "same_year": 1,
+    "cont": "North America",
+    "doubt": 0
+   },
+   {
+    "iso": "SAU",
+    "country": "Saudi Arabia",
+    "y": 1997,
+    "name": "Islam Questions & Answers",
+    "when": "1997",
+    "src": "wikidata",
+    "url": "https://islamqa.info",
+    "wiki": "IslamQA.info",
+    "ref": "https://www.wikidata.org/wiki/Q17006152",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "SVK",
+    "country": "Slovakia",
+    "y": 1997,
+    "name": "zoznam.sk",
+    "when": "1997",
+    "src": "wikidata",
+    "url": "https://www.zoznam.sk/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q19945347",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "VEN",
+    "country": "Venezuela",
+    "y": 1997,
+    "name": "El sitio",
+    "when": "1997",
+    "src": "wikidata",
+    "url": "http://www.elsitio.com",
+    "wiki": "El_Sitio_(website)",
+    "ref": "https://www.wikidata.org/wiki/Q5352511",
+    "same_year": 1,
+    "cont": "South America",
+    "doubt": 0
+   },
+   {
+    "iso": "AZE",
+    "country": "Azerbaijan",
+    "y": 1998,
+    "name": "president.az",
+    "when": "1998",
+    "src": "wikidata",
+    "url": "http://president.az",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q16364045",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "JEY",
+    "country": "Jersey",
+    "y": 1998,
+    "name": "Rakuten.co.uk",
+    "when": "1998",
+    "src": "wikidata",
+    "url": "http://www.rakuten.co.uk/",
+    "wiki": "Rakuten.co.uk",
+    "ref": "https://www.wikidata.org/wiki/Q704042",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "MLI",
+    "country": "Mali",
+    "y": 1998,
+    "name": "aBamako",
+    "when": "1998",
+    "src": "wikidata",
+    "url": "http://www.abamako.com/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q137104482",
+    "same_year": 1,
+    "cont": "Africa",
+    "doubt": 0
+   },
+   {
+    "iso": "SGP",
+    "country": "Singapore",
+    "y": 1998,
+    "name": "Agoda",
+    "when": "1998",
+    "src": "wikidata",
+    "url": "https://www.agoda.com/",
+    "wiki": "Agoda",
+    "ref": "https://www.wikidata.org/wiki/Q395182",
+    "same_year": 2,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "ARE",
+    "country": "United Arab Emirates",
+    "y": 1998,
+    "name": "Maktoob",
+    "when": "1998",
+    "src": "wikidata",
+    "url": "https://maktoob.yahoo.com/",
+    "wiki": "Maktoob",
+    "ref": "https://www.wikidata.org/wiki/Q6740419",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "MYS",
+    "country": "Malaysia",
+    "y": 1999,
+    "name": "Harakahdaily",
+    "when": "1999-08-01",
+    "src": "wikidata",
+    "url": "https://harakahdaily.net/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q123383359",
+    "same_year": 2,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "BLR",
+    "country": "Belarus",
+    "y": 1999,
+    "name": "kosht.com",
+    "when": "1999-09-25",
+    "src": "wikidata",
+    "url": "http://kosht.com",
+    "wiki": "Kosht.com",
+    "ref": "https://www.wikidata.org/wiki/Q4042323",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "LBN",
+    "country": "Lebanon",
+    "y": 1999,
+    "name": "Al-Ahed",
+    "when": "1999-11-05",
+    "src": "wikidata",
+    "url": "https://spanish.alahednews.news/",
+    "wiki": "Al-Ahed_(newspaper)",
+    "ref": "https://www.wikidata.org/wiki/Q106281209",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "ARM",
+    "country": "Armenia",
+    "y": 1999,
+    "name": "Mediamax news agency",
+    "when": "1999",
+    "src": "wikidata",
+    "url": "https://mediamax.am",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q6806104",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "BEN",
+    "country": "Benin",
+    "y": 1999,
+    "name": "Fraternité",
+    "when": "1999",
+    "src": "wikidata",
+    "url": "https://www.fraternitebj.info/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q107054352",
+    "same_year": 1,
+    "cont": "Africa",
+    "doubt": 0
+   },
+   {
+    "iso": "IRN",
+    "country": "Iran",
+    "y": 1999,
+    "name": "Gamapack",
+    "when": "1999",
+    "src": "wikidata",
+    "url": "",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q140380134",
+    "same_year": 2,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "NIC",
+    "country": "Nicaragua",
+    "y": 1999,
+    "name": "La Nueva Radio YA",
+    "when": "1999",
+    "src": "wikidata",
+    "url": "https://nuevaya.com.ni/",
+    "wiki": "La_Nueva_Radio_Ya",
+    "ref": "https://www.wikidata.org/wiki/Q124657391",
+    "same_year": 1,
+    "cont": "North America",
+    "doubt": 0
+   },
+   {
+    "iso": "NGA",
+    "country": "Nigeria",
+    "y": 1999,
+    "name": "Kogi State University Library",
+    "when": "1999",
+    "src": "wikidata",
+    "url": "http://www.ksulibrary-edu.webs.com",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q109318066",
+    "same_year": 1,
+    "cont": "Africa",
+    "doubt": 0
+   },
+   {
+    "iso": "SVN",
+    "country": "Slovenia",
+    "y": 1999,
+    "name": "Bolha.com",
+    "when": "1999",
+    "src": "wikidata",
+    "url": "https://www.bolha.com/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q141181043",
+    "same_year": 1,
+    "cont": "Europe",
+    "doubt": 0
+   },
+   {
+    "iso": "THA",
+    "country": "Thailand",
+    "y": 1999,
+    "name": "MThai",
+    "when": "1999",
+    "src": "wikidata",
+    "url": "https://mthai.com/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q13026121",
+    "same_year": 3,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "BGD",
+    "country": "Bangladesh",
+    "y": 2000,
+    "name": "bdjobs.com",
+    "when": "2000-07-01",
+    "src": "wikidata",
+    "url": "https://bdjobs.com",
+    "wiki": "Bdjobs",
+    "ref": "https://www.wikidata.org/wiki/Q104636786",
+    "same_year": 1,
+    "cont": "Asia",
+    "doubt": 0
+   },
+   {
+    "iso": "ECU",
+    "country": "Ecuador",
+    "y": 2000,
+    "name": "QuitoGay.net",
+    "when": "2000",
+    "src": "wikidata",
+    "url": "",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q136226716",
+    "same_year": 1,
+    "cont": "South America",
+    "doubt": 0
+   },
+   {
+    "iso": "MAR",
+    "country": "Morocco",
+    "y": 2000,
+    "name": "Mabooko",
+    "when": "2000",
+    "src": "wikidata",
+    "url": "https://mabooko.com",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q137919935",
+    "same_year": 1,
+    "cont": "Africa",
+    "doubt": 0
+   },
+   {
+    "iso": "URY",
+    "country": "Uruguay",
+    "y": 2000,
+    "name": "La Onda Digital",
+    "when": "2000",
+    "src": "wikidata",
+    "url": "https://www.laondadigital.com.uy/",
+    "wiki": "",
+    "ref": "https://www.wikidata.org/wiki/Q126165392",
+    "same_year": 1,
+    "cont": "South America",
+    "doubt": 0
+   }
+  ],
+  "n_doubt": 5,
+  "doubt_names": "Mauritania, Cambodia, Palestine, Bosnia and Herzegovina, Rwanda",
+  "peak_new_year": 1993,
+  "peak_new_n": 20,
+  "continents": [
+   {
+    "cont": "Europe",
+    "country": "Switzerland",
+    "y": 1990,
+    "name": "CERN",
+    "src": "list"
+   },
+   {
+    "cont": "North America",
+    "country": "United States",
+    "y": 1991,
+    "name": "Stanford Linear Accelerator Center",
+    "src": "list"
+   },
+   {
+    "cont": "Asia",
+    "country": "Israel",
+    "y": 1992,
+    "name": "HUJI",
+    "src": "list"
+   },
+   {
+    "cont": "South America",
+    "country": "Argentina",
+    "y": 1993,
+    "name": "A24",
+    "src": "wikidata"
+   },
+   {
+    "cont": "Africa",
+    "country": "Mauritania",
+    "y": 1993,
+    "name": "Le Calame",
+    "src": "wikidata"
+   },
+   {
+    "cont": "Oceania",
+    "country": "Australia",
+    "y": 1993,
+    "name": "Doongal Aboriginal Art",
+    "src": "wikidata"
+   }
+  ],
+  "by_cont": {
+   "Europe": {
+    "cont": "Europe",
+    "country": "Switzerland",
+    "y": 1990,
+    "name": "CERN",
+    "src": "list"
+   },
+   "North America": {
+    "cont": "North America",
+    "country": "United States",
+    "y": 1991,
+    "name": "Stanford Linear Accelerator Center",
+    "src": "list"
+   },
+   "Asia": {
+    "cont": "Asia",
+    "country": "Israel",
+    "y": 1992,
+    "name": "HUJI",
+    "src": "list"
+   },
+   "South America": {
+    "cont": "South America",
+    "country": "Argentina",
+    "y": 1993,
+    "name": "A24",
+    "src": "wikidata"
+   },
+   "Africa": {
+    "cont": "Africa",
+    "country": "Mauritania",
+    "y": 1993,
+    "name": "Le Calame",
+    "src": "wikidata"
+   },
+   "Oceania": {
+    "cont": "Oceania",
+    "country": "Australia",
+    "y": 1993,
+    "name": "Doongal Aboriginal Art",
+    "src": "wikidata"
+   }
+  },
+  "by_cont_clean": {
+   "Europe": {
+    "country": "Switzerland",
+    "y": 1990,
+    "name": "CERN",
+    "src": "list"
+   },
+   "North America": {
+    "country": "United States",
+    "y": 1991,
+    "name": "Stanford Linear Accelerator Center",
+    "src": "list"
+   },
+   "Asia": {
+    "country": "Israel",
+    "y": 1992,
+    "name": "HUJI",
+    "src": "list"
+   },
+   "South America": {
+    "country": "Argentina",
+    "y": 1993,
+    "name": "A24",
+    "src": "wikidata"
+   },
+   "Oceania": {
+    "country": "Australia",
+    "y": 1993,
+    "name": "Doongal Aboriginal Art",
+    "src": "wikidata"
+   },
+   "Africa": {
+    "country": "South Africa",
+    "y": 1995,
+    "name": "Design Indaba",
+    "src": "wikidata"
+   }
+  },
+  "by_cont_n": {
+   "Europe": 33,
+   "North America": 7,
+   "Asia": 25,
+   "South America": 8,
+   "Africa": 8,
+   "Oceania": 2
+  },
+  "cont_total": {
+   "Europe": 50,
+   "North America": 38,
+   "Asia": 51,
+   "South America": 13,
+   "Africa": 53,
+   "Oceania": 24
+  },
+  "pop_covered_pct": 76.0,
+  "africa_n": 8,
+  "africa_total": 53,
+  "by_iso": {
+   "CHE": {
+    "y": 1990,
+    "name": "CERN",
+    "src": "list"
+   },
+   "USA": {
+    "y": 1991,
+    "name": "Stanford Linear Accelerator Center",
+    "src": "list"
+   },
+   "NLD": {
+    "y": 1992,
+    "name": "Nikhef",
+    "src": "list"
+   },
+   "IRL": {
+    "y": 1992,
+    "name": "CURIA",
+    "src": "list"
+   },
+   "ISR": {
+    "y": 1992,
+    "name": "HUJI",
+    "src": "list"
+   },
+   "JPN": {
+    "y": 1992,
+    "name": "KEK",
+    "src": "list"
+   },
+   "FRA": {
+    "y": 1992,
+    "name": "IN2P3",
+    "src": "list"
+   },
+   "UKR": {
+    "y": 1993,
+    "name": "Ukrainian Independent Information Agency",
+    "src": "wikidata"
+   },
+   "ARG": {
+    "y": 1993,
+    "name": "A24",
+    "src": "wikidata"
+   },
+   "DEU": {
+    "y": 1993,
+    "name": "The Patches Scrolls",
+    "src": "wikidata"
+   },
+   "RUS": {
+    "y": 1993,
+    "name": "Novaya Gazeta",
+    "src": "wikidata"
+   },
+   "KOR": {
+    "y": 1993,
+    "name": "Maeil Labor News",
+    "src": "wikidata"
+   },
+   "BEL": {
+    "y": 1993,
+    "name": "Principia Cybernetica",
+    "src": "list"
+   },
+   "MRT": {
+    "y": 1993,
+    "name": "Le Calame",
+    "src": "wikidata"
+   },
+   "MEX": {
+    "y": 1993,
+    "name": "Siglo de Durango",
+    "src": "wikidata"
+   },
+   "ESP": {
+    "y": 1993,
+    "name": "Cajadecarton.es",
+    "src": "wikidata"
+   },
+   "CAN": {
+    "y": 1993,
+    "name": "Flags of the World",
+    "src": "wikidata"
+   },
+   "FIN": {
+    "y": 1993,
+    "name": "Kokkolan Halpa-Halli Oy",
+    "src": "wikidata"
+   },
+   "TWN": {
+    "y": 1993,
+    "name": "104 Job Bank",
+    "src": "wikidata"
+   },
+   "NOR": {
+    "y": 1993,
+    "name": "Joachim Jarre Society",
+    "src": "list"
+   },
+   "GBR": {
+    "y": 1993,
+    "name": "Trojan Room coffee pot",
+    "src": "list"
+   },
+   "AUS": {
+    "y": 1993,
+    "name": "Doongal Aboriginal Art",
+    "src": "wikidata"
+   },
+   "KHM": {
+    "y": 1993,
+    "name": "The Cambodia Daily",
+    "src": "wikidata"
+   },
+   "ITA": {
+    "y": 1993,
+    "name": "Patrizia Pepe",
+    "src": "wikidata"
+   },
+   "KAZ": {
+    "y": 1993,
+    "name": "ALAU.KZ",
+    "src": "wikidata"
+   },
+   "LTU": {
+    "y": 1993,
+    "name": "Mano namai",
+    "src": "wikidata"
+   },
+   "TUR": {
+    "y": 1993,
+    "name": "TGRT Haber",
+    "src": "wikidata"
+   },
+   "GRC": {
+    "y": 1994,
+    "name": "Sportime",
+    "src": "wikidata"
+   },
+   "COL": {
+    "y": 1994,
+    "name": "La Nación",
+    "src": "wikidata"
+   },
+   "LUX": {
+    "y": 1994,
+    "name": "CORDIS",
+    "src": "list"
+   },
+   "CZE": {
+    "y": 1994,
+    "name": "Radio Prague",
+    "src": "list"
+   },
+   "IND": {
+    "y": 1994,
+    "name": "India TV",
+    "src": "wikidata"
+   },
+   "PSE": {
+    "y": 1994,
+    "name": "Snunit",
+    "src": "wikidata"
+   },
+   "PRT": {
+    "y": 1994,
+    "name": "Motociclismo",
+    "src": "wikidata"
+   },
+   "SWE": {
+    "y": 1994,
+    "name": "Yelah",
+    "src": "wikidata"
+   },
+   "AUT": {
+    "y": 1995,
+    "name": "derStandard.at",
+    "src": "wikidata"
+   },
+   "HKG": {
+    "y": 1995,
+    "name": "Weather Underground of Hong Kong",
+    "src": "wikidata"
+   },
+   "DNK": {
+    "y": 1995,
+    "name": "Scope",
+    "src": "wikidata"
+   },
+   "CHN": {
+    "y": 1995,
+    "name": "Dahe Daily",
+    "src": "wikidata"
+   },
+   "BIH": {
+    "y": 1995,
+    "name": "Commission to Preserve National Monuments of Bosnia and Herzegovina",
+    "src": "wikidata"
+   },
+   "BRA": {
+    "y": 1995,
+    "name": "Shoptime",
+    "src": "wikidata"
+   },
+   "IDN": {
+    "y": 1995,
+    "name": "Tempo.co",
+    "src": "wikidata"
+   },
+   "KGZ": {
+    "y": 1995,
+    "name": "Neman-Pharm",
+    "src": "wikidata"
+   },
+   "POL": {
+    "y": 1995,
+    "name": "Wirtualna Polska",
+    "src": "wikidata"
+   },
+   "RWA": {
+    "y": 1995,
+    "name": "The New Times",
+    "src": "wikidata"
+   },
+   "ZAF": {
+    "y": 1995,
+    "name": "Design Indaba",
+    "src": "wikidata"
+   },
+   "ROU": {
+    "y": 1996,
+    "name": "cIMeC.Ro",
+    "src": "wikidata"
+   },
+   "NZL": {
+    "y": 1996,
+    "name": "Jasons Travel Media",
+    "src": "wikidata"
+   },
+   "SRB": {
+    "y": 1996,
+    "name": "Blic",
+    "src": "wikidata"
+   },
+   "EST": {
+    "y": 1996,
+    "name": "NETI",
+    "src": "wikidata"
+   },
+   "QAT": {
+    "y": 1996,
+    "name": "Al Jazeera",
+    "src": "wikidata"
+   },
+   "CHL": {
+    "y": 1996,
+    "name": "Gob.cl",
+    "src": "wikidata"
+   },
+   "CYP": {
+    "y": 1996,
+    "name": "Robtex",
+    "src": "wikidata"
+   },
+   "HUN": {
+    "y": 1996,
+    "name": "Web Gallery of Art",
+    "src": "wikidata"
+   },
+   "PER": {
+    "y": 1996,
+    "name": "Ciberayllu",
+    "src": "wikidata"
+   },
+   "CYM": {
+    "y": 1997,
+    "name": "NetEase",
+    "src": "wikidata"
+   },
+   "HRV": {
+    "y": 1997,
+    "name": "Monitor.hr",
+    "src": "wikidata"
+   },
+   "CUW": {
+    "y": 1997,
+    "name": "GoldenPalace.com",
+    "src": "wikidata"
+   },
+   "GIN": {
+    "y": 1997,
+    "name": "Guinéenews",
+    "src": "wikidata"
+   },
+   "ISL": {
+    "y": 1997,
+    "name": "Kvikmyndir",
+    "src": "wikidata"
+   },
+   "PRI": {
+    "y": 1997,
+    "name": "Primera Hora",
+    "src": "wikidata"
+   },
+   "SAU": {
+    "y": 1997,
+    "name": "Islam Questions & Answers",
+    "src": "wikidata"
+   },
+   "SVK": {
+    "y": 1997,
+    "name": "zoznam.sk",
+    "src": "wikidata"
+   },
+   "VEN": {
+    "y": 1997,
+    "name": "El sitio",
+    "src": "wikidata"
+   },
+   "AZE": {
+    "y": 1998,
+    "name": "president.az",
+    "src": "wikidata"
+   },
+   "JEY": {
+    "y": 1998,
+    "name": "Rakuten.co.uk",
+    "src": "wikidata"
+   },
+   "MLI": {
+    "y": 1998,
+    "name": "aBamako",
+    "src": "wikidata"
+   },
+   "SGP": {
+    "y": 1998,
+    "name": "Agoda",
+    "src": "wikidata"
+   },
+   "ARE": {
+    "y": 1998,
+    "name": "Maktoob",
+    "src": "wikidata"
+   },
+   "MYS": {
+    "y": 1999,
+    "name": "Harakahdaily",
+    "src": "wikidata"
+   },
+   "BLR": {
+    "y": 1999,
+    "name": "kosht.com",
+    "src": "wikidata"
+   },
+   "LBN": {
+    "y": 1999,
+    "name": "Al-Ahed",
+    "src": "wikidata"
+   },
+   "ARM": {
+    "y": 1999,
+    "name": "Mediamax news agency",
+    "src": "wikidata"
+   },
+   "BEN": {
+    "y": 1999,
+    "name": "Fraternité",
+    "src": "wikidata"
+   },
+   "IRN": {
+    "y": 1999,
+    "name": "Gamapack",
+    "src": "wikidata"
+   },
+   "NIC": {
+    "y": 1999,
+    "name": "La Nueva Radio YA",
+    "src": "wikidata"
+   },
+   "NGA": {
+    "y": 1999,
+    "name": "Kogi State University Library",
+    "src": "wikidata"
+   },
+   "SVN": {
+    "y": 1999,
+    "name": "Bolha.com",
+    "src": "wikidata"
+   },
+   "THA": {
+    "y": 1999,
+    "name": "MThai",
+    "src": "wikidata"
+   },
+   "BGD": {
+    "y": 2000,
+    "name": "bdjobs.com",
+    "src": "wikidata"
+   },
+   "ECU": {
+    "y": 2000,
+    "name": "QuitoGay.net",
+    "src": "wikidata"
+   },
+   "MAR": {
+    "y": 2000,
+    "name": "Mabooko",
+    "src": "wikidata"
+   },
+   "URY": {
+    "y": 2000,
+    "name": "La Onda Digital",
+    "src": "wikidata"
+   }
+  }
+ },
+ "cctld": {
+  "items": 318,
+  "with_date": 277,
+  "matched": 237,
+  "matched_dated": 235,
+  "first": ".us",
+  "first_date": "1985-02-15",
+  "by1989": 34,
+  "by1990": 46,
+  "by1994": 130,
+  "by2000": 223,
+  "cum": {
+   "1985": 3,
+   "1986": 12,
+   "1987": 20,
+   "1988": 27,
+   "1989": 34,
+   "1990": 46,
+   "1991": 68,
+   "1992": 84,
+   "1993": 108,
+   "1994": 130,
+   "1995": 158,
+   "1996": 185,
+   "1997": 218,
+   "1998": 220,
+   "1999": 221,
+   "2000": 223
+  },
+  "new_by_year": {
+   "1985": 3,
+   "1986": 9,
+   "1987": 8,
+   "1988": 7,
+   "1989": 7,
+   "1990": 12,
+   "1991": 22,
+   "1992": 16,
+   "1993": 24,
+   "1994": 22,
+   "1995": 28,
+   "1996": 27,
+   "1997": 33,
+   "1998": 2,
+   "1999": 1,
+   "2000": 2
+  },
+  "after2000": 12,
+  "wiki_rows": 267,
+  "wiki_with_year": 46,
+  "both": 33,
+  "agree": 30,
+  "disagree": [
+   [
+    ".it",
+    1987,
+    "1988"
+   ],
+   [
+    ".ma",
+    1993,
+    "1992"
+   ],
+   [
+    ".cl",
+    1995,
+    "1987"
+   ]
+  ],
+  "peak_year": 1997,
+  "peak_n": 33,
+  "gap_list_median": 6.0,
+  "gap_list_min": -1,
+  "gap_list_max": 8,
+  "gap_list_n": 12,
+  "gap_n": 83,
+  "gap_median": 5.0,
+  "web_before_tld": 6,
+  "same_year": 1,
+  "us_date": "1985-02-15",
+  "gb_date": "1985-07-24",
+  "ch_y": 1987,
+  "jp_y": 1986,
+  "us_month": "February 1985"
+ },
+ "milestones": [
+  {
+   "date": "12 November 1990",
+   "what": "Berners-Lee and Cailliau's formal proposal for the WorldWideWeb hypertext project"
+  },
+  {
+   "date": "20 December 1990",
+   "what": "info.cern.ch, the first website, published at CERN"
+  },
+  {
+   "date": "January 1991",
+   "what": "the first web servers outside CERN switched on"
+  },
+  {
+   "date": "6 August 1991",
+   "what": "Berners-Lee posts a summary of the project to the alt.hypertext newsgroup"
+  },
+  {
+   "date": "12 December 1991",
+   "what": "SLAC in California: the first web server outside Europe"
+  },
+  {
+   "date": "June 1992",
+   "what": "ten websites, according to the list's introduction"
+  },
+  {
+   "date": "30 April 1993",
+   "what": "CERN puts the web in the public domain, free to anyone"
+  },
+  {
+   "date": "End of 1993",
+   "what": "623 websites (Matthew Gray's count)"
+  },
+  {
+   "date": "June 1995",
+   "what": "some 23,500 websites"
+  }
+ ],
+ "source": {
+  "revids": {
+   "List of websites founded before 1995": 1382290598,
+   "History of the World Wide Web": 1383306370,
+   "List of Internet top-level domains": 1383138271,
+   "Country code top-level domain": 1382234250
+  },
+  "fetched": "2026",
+  "list_rows": 120,
+  "wd_rows": 4603,
+  "wd_items": 3127,
+  "cc_rows": 320,
+  "n_ne": 238
+ },
+ "defs": {
+  "web_floor": 1990,
+  "strict_floor": 1993,
+  "cc_disagree": ".it (1987 in Wikidata, 1988 in Wikipedia); .ma (1993 in Wikidata, 1992 in Wikipedia); .cl (1995 in Wikidata, 1987 in Wikipedia)"
+ },
+ "meta": {
+  "page": "https://maps.tristanhotham.com/first-websites/",
+  "repo": "https://github.com/Tristan-Hotham/first-websites",
+  "doi": "10.5281/zenodo.23878602",
+  "blog": "https://blog.tristanhotham.com/2026/10/31/first-websites/",
+  "slug": "first-websites"
+ }
+}
