@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this data or code, please cite it as below."
+title: "The First Websites: How the World Wide Web Spread Around the World, 1990 to 2000"
+type: dataset
+authors:
+  - family-names: Hotham
+    given-names: Tristan
+    orcid: "https://orcid.org/0000-0003-4931-9349"
+    affiliation: "Independent researcher"
+doi: "10.5281/zenodo.23878602"
+url: "https://maps.tristanhotham.com/first-websites/"
+repository-code: "https://github.com/Tristan-Hotham/first-websites"
+license: CC-BY-4.0
+keywords:
+  - "World Wide Web"
+  - "internet history"
+  - "early websites"
+  - "diffusion"
+  - "country code top-level domains"
+  - "Wikipedia"
+  - "Wikidata"
+  - "open data"
+  - "maps"
